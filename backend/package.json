@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "A social network app for cinephils",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimosp/CineFriends.git"
+  },
+  "author": "Deadpools",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimosp/CineFriends/issues"
+  },
+  "homepage": "https://github.com/dimosp/CineFriends#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "nodemon": "^2.0.5"
+  }
+}
