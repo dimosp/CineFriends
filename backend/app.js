@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+const expressValidator = require("express-validator");
+
+// in order to parse incoming request bodies with req.body property
+const bodyParser = require("body-parser");
 
 // import mongoose for MongoDB object modeling
 const mongoose = require("mongoose");
+
 // load env variables and create .env.example file
 const dotenv_safe = require("dotenv-safe");
 dotenv_safe.config();
@@ -20,9 +26,16 @@ mongoose.connection.on("error", err => {
 
 // bring the routes
 const testRoutes = require("./routes/test");
+const authRoutes = require("./routes/auth");
 
 // middleware
+
+// HTTP request logger, output colored by response status
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(expressValidator());
 app.use("/api", testRoutes);
+app.use("/api", authRoutes);
 
 // listening on environment port if defined or 8080
 const port = process.env.PORT || 8080;
