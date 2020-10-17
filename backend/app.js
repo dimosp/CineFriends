@@ -6,6 +6,9 @@ const expressValidator = require("express-validator");
 // in order to parse incoming request bodies with req.body property
 const bodyParser = require("body-parser");
 
+// parse Cookie header and populate req.cookies with an object keyed by the cookie names
+const cookieParser = require('cookie-parser');
+
 // import mongoose for MongoDB object modeling
 const mongoose = require("mongoose");
 
@@ -32,7 +35,9 @@ const authRoutes = require("./routes/auth");
 
 // HTTP request logger, output colored by response status
 app.use(morgan('dev'));
+
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(expressValidator());
 app.use("/api", testRoutes);
 app.use("/api", authRoutes);
