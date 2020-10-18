@@ -42,3 +42,9 @@ exports.signin = (req, res) => {
         return res.json({token, user: {_id, name, email}});
     });
 };
+
+exports.signout = (req, res) => {
+    // clear the cookie with the name "t"
+    res.clearCookie("t");
+    return res.json({message: "Signout was successful!"});
+};
