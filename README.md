@@ -1,3 +1,5 @@
+[![Linter](https://github.com/dimosp/CineFriends/workflows/Linter/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 # CineFriends 
 <p>
 	<img src="https://user-images.githubusercontent.com/72674792/96276279-72033780-0fdb-11eb-8adc-01306c6e08ef.png" align="center" height="20%" width="20%">
