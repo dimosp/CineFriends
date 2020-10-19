@@ -1,4 +1,4 @@
-![Linter](https://https://github.com/dimosp/CineFriends/workflows/Linter/badge.svg)
+[![Linter](https://github.com/dimosp/CineFriends/workflows/Linter/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 # CineFriends 
 <p>
