@@ -42,6 +42,13 @@ app.use(expressValidator());
 app.use("/api", testRoutes);
 app.use("/api", authRoutes);
 
+// handle unauthorized error
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).json({error: "Unauthorized action!"});
+    }
+});
+
 // listening on environment port if defined or 8080
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

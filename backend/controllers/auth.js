@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 require("dotenv-safe").config();
+const expressJwt = require("express-jwt");
 const User = require("../models/user");
 
 // create async function, since program waits until it gets the data from DB
@@ -48,3 +49,14 @@ exports.signout = (req, res) => {
     res.clearCookie("t");
     return res.json({message: "Signout was successful!"});
 };
+
+exports.requireSignin = expressJwt ({
+    secret: process.env.JWT_SECRET,
+    
+    // solves the "Algorithms should be set" error
+    algorithms: ["HS256"],
+    
+    // if the token is valid, expressjwt adds the verified user's id
+    // in an auth key to the request object
+    userProperty: "auth"
+});
