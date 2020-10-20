@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const expressValidator = require("express-validator");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./docs/openapi3.json");
 
 // in order to parse incoming request bodies with req.body property
 const bodyParser = require("body-parser");
@@ -41,6 +43,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 app.use("/api", testRoutes);
 app.use("/api", authRoutes);
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // handle unauthorized error
 app.use(function (err, req, res, next) {
