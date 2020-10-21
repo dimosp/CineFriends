@@ -20,7 +20,7 @@ exports.postById = (req, res, next, id) => {
         });
 };
 
-/*
+
 exports.getPosts = (req, res) => {
     const posts = Post.find()
         .populate("postedBy", "_id name")
@@ -33,9 +33,9 @@ exports.getPosts = (req, res) => {
         })
         .catch(err => console.log(err));
 };
-*/
 
-// with pagination
+
+ /*             // with pagination
 exports.getPosts = async (req, res) => {
     // get current page from req.query or use default value of 1
     const currentPage = req.query.page || 1;
@@ -62,6 +62,7 @@ exports.getPosts = async (req, res) => {
         })
         .catch(err => console.log(err));
 };
+*/
 
 exports.createPost = (req, res) => {
     let form = new formidable.IncomingForm();
