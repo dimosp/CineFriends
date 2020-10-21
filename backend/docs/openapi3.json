@@ -1,0 +1,351 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Project CineFriends (Binge)",
+    "description": "Project CineFriends, also known as Binge, is a social network for movie enthusiasts.",
+    "contact": {
+      "email": "dimosthenis.p@skgcode.gr"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "signup",
+      "description": "Signup operation"
+    },
+    {
+      "name": "signin",
+      "description": "Signin operation"
+    },
+    {
+      "name": "signout",
+      "description": "Signout operation"
+    },
+    {
+      "name": "users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "posts",
+      "description": "Operations about user posts"
+    },
+    {
+      "name": "test",
+      "description": "Internal testing of API"
+    }
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "signup"
+        ],
+        "summary": "Register a new user to the app",
+        "description": "Add a non-existing user to the DB",
+        "operationId": "signup",
+        "requestBody": {
+          "description": "Properties that need to be sent for user creation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSignup"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signup is successful! Please log-in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Email is taken!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardApiResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/signin": {
+      "post": {
+        "tags": [
+          "signin"
+        ],
+        "summary": "User signin",
+        "description": "Signin with existing email and password",
+        "operationId": "signin",
+        "requestBody": {
+          "description": "Properties that need to be sent for user signin",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSignup"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signup is successful! Please log-in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SinginResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "[\"User with that email does not exist! Please signup.\", \"Email and password do not match!\"]",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardApiResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/signout": {
+      "get": {
+        "tags": [
+          "signout"
+        ],
+        "summary": "User signout",
+        "description": "Deletes the JWT cookie from the client side, thus signing out the user",
+        "operationId": "signout",
+        "responses": {
+          "200": {
+            "description": "Signout was successful!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test": {
+      "get": {
+        "tags": [
+          "test"
+        ],
+        "summary": "Get dummy data",
+        "description": "Get some dummy data (stored in the app) from the server",
+        "operationId": "getTest",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test-authentication": {
+      "get": {
+        "tags": [
+          "test"
+        ],
+        "summary": "Get dummy data if authenticated",
+        "description": "Get some dummy data (stored in the app) from the server only when signed in (having a JWT token)",
+        "operationId": "uploadFile",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestingResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      }
+    },
+    "/test-authorization/{userId}": {
+      "get": {
+        "tags": [
+          "test"
+        ],
+        "summary": "Get dummy data if authenticated and authorized",
+        "description": "Get some dummy data (stored in the app) from the server only when signed in (having a JWT token) and authorized (sending the same user id as a parameter, as the id in the JWT token)",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestingResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserSignup": {
+        "required": [
+          "email",
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John"
+          },
+          "email": {
+            "$ref": "#/components/schemas/Email"
+          },
+          "password": {
+            "$ref": "#/components/schemas/Password"
+          }
+        }
+      },
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "John"
+          },
+          "email": {
+            "$ref": "#/components/schemas/Email"
+          }
+        }
+      },
+      "StandardApiResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "SinginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eiJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg5OWUwZmY2NmQ5ZZA0MmNjNjRmMmYiLCJpYXQiOjE2MDMyMTk0NjJ9.CgF9j-1dDumCDU2AELnKrzox6HxK-O8H2ezxw8DlnYM"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserInfo"
+          }
+        }
+      },
+      "TestingResponse": {
+        "type": "object",
+        "properties": {
+          "test_data": {
+            "type": "array",
+            "example": [
+              {
+                "user_1": "John Doe"
+              },
+              {
+                "user_2": "George Smith"
+              }
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "user_1": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Email": {
+        "maximum": 32,
+        "minimum": 7,
+        "pattern": "/^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$/",
+        "type": "string",
+        "format": "email",
+        "example": "john@gmail.com"
+      },
+      "Password": {
+        "maximum": 32,
+        "minimum": 8,
+        "pattern": "/\\d/",
+        "type": "string",
+        "format": "password",
+        "example": "Testing_password1"
+      }
+    },
+    "securitySchemes": {
+      "jwt_token": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
