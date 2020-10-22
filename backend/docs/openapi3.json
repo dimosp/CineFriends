@@ -74,12 +74,22 @@
               }
             }
           },
+          "400": {
+            "description": "[\"Name is required!\", \"Email should be between 7 to 32 characters!\", \"Email must contain the @ character\", \"Password is required!\", \"Password should be between 8 to 32 characters!\", \"Password must contain a number!\"]",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Email is taken!",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StandardApiResponse"
+                  "$ref": "#/components/schemas/StandardErrorResponse"
                 }
               }
             }
@@ -109,11 +119,21 @@
         },
         "responses": {
           "200": {
-            "description": "Signup is successful! Please log-in.",
+            "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SinginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "[\"Email should be between 7 to 32 characters!\", \"Please type your valid email address!\", \"Password is required!\", \"Your password is invalid!\"]",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
                 }
               }
             }
@@ -123,7 +143,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StandardApiResponse"
+                  "$ref": "#/components/schemas/StandardErrorResponse"
                 }
               }
             }
@@ -154,6 +174,230 @@
         }
       }
     },
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all users",
+        "description": "Get all the users from the DB",
+        "operationId": "allUsers",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get a specific user",
+        "description": "Get a specific user from the DB",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecificUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update a specific user",
+        "description": "Update a specific user in the DB",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Properties that need to be sent for user update",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/Name"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatedUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not authorized to perform this action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete a specific user",
+        "description": "Delete a specific user from the DB",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not authorized to perform this action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      }
+    },
     "/test": {
       "get": {
         "tags": [
@@ -164,7 +408,7 @@
         "operationId": "getTest",
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
@@ -186,11 +430,21 @@
         "operationId": "uploadFile",
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TestingResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
                 }
               }
             }
@@ -223,11 +477,41 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TestingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not authorized to perform this action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
                 }
               }
             }
@@ -243,6 +527,55 @@
   },
   "components": {
     "schemas": {
+      "User": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UserInfo"
+          }
+        ]
+      },
+      "SpecificUser": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/User"
+          }
+        ]
+      },
+      "UpdatedUser": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/SpecificUser"
+          }
+        }
+      },
+      "Users": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "John"
+          },
+          "email": {
+            "$ref": "#/components/schemas/Email"
+          }
+        }
+      },
       "UserSignup": {
         "required": [
           "email",
@@ -263,19 +596,15 @@
           }
         }
       },
-      "UserInfo": {
+      "SinginResponse": {
         "type": "object",
         "properties": {
-          "_id": {
+          "token": {
             "type": "string",
-            "format": "uuid"
+            "example": "eiJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg5OWUwZmY2NmQ5ZZA0MmNjNjRmMmYiLCJpYXQiOjE2MDMyMTk0NjJ9.CgF9j-1dDumCDU2AELnKrzox6HxK-O8H2ezxw8DlnYM"
           },
-          "name": {
-            "type": "string",
-            "example": "John"
-          },
-          "email": {
-            "$ref": "#/components/schemas/Email"
+          "user": {
+            "$ref": "#/components/schemas/UserInfo"
           }
         }
       },
@@ -287,15 +616,11 @@
           }
         }
       },
-      "SinginResponse": {
+      "StandardErrorResponse": {
         "type": "object",
         "properties": {
-          "token": {
-            "type": "string",
-            "example": "eiJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg5OWUwZmY2NmQ5ZZA0MmNjNjRmMmYiLCJpYXQiOjE2MDMyMTk0NjJ9.CgF9j-1dDumCDU2AELnKrzox6HxK-O8H2ezxw8DlnYM"
-          },
-          "user": {
-            "$ref": "#/components/schemas/UserInfo"
+          "error": {
+            "type": "string"
           }
         }
       },
@@ -320,6 +645,15 @@
                 }
               }
             }
+          }
+        }
+      },
+      "Name": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Johny"
           }
         }
       },
