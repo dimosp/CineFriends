@@ -1,11 +1,5 @@
 const express = require('express');
-const {
-    getPosts,
-    createPost,
-    postsByUser,
-    postById,
-    singlePost,
-} = require('../controllers/post');
+const { getPosts, createPost, postsByUser, postById, singlePost } = require('../controllers/post');
 const { requireSignin } = require('../controllers/auth');
 const { userById } = require('../controllers/user');
 const { createPostValidator } = require('../validator');
