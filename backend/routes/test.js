@@ -11,7 +11,7 @@ router.get("/test", testController.getTest);
 router.get("/test-authentication", requireSignin, testController.getTest);
 
 // get a test response from the API only when signed in and authorized
-router.get("/test-authorization", requireSignin, hasAuthorization, testController.getTest);
+router.get("/test-authorization/:userId", requireSignin, hasAuthorization, testController.getTest);
 
 // for any route containing :userId, the app will first execute userByID()
 router.param("userId", userById);

@@ -32,6 +32,7 @@ mongoose.connection.on("error", err => {
 // bring the routes
 const testRoutes = require("./routes/test");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 // middleware
 
@@ -43,6 +44,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 app.use("/api", testRoutes);
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // handle unauthorized error
