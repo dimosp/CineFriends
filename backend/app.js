@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
 const expressValidator = require("express-validator");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./docs/openapi3.json");
@@ -43,6 +44,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors());
 app.use("/api", testRoutes);
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
