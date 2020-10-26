@@ -211,7 +211,8 @@
             "description": "ID of user as stored in the DB",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -267,7 +268,8 @@
             "description": "ID of user as stored in the DB",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -345,7 +347,8 @@
             "description": "ID of user as stored in the DB",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -396,6 +399,180 @@
             "jwt_token": []
           }
         ]
+      }
+    },
+    "/posts/new/{userId}": {
+      "post": {
+        "tags": [
+          "posts"
+        ],
+        "summary": "Create a new user post",
+        "description": "Send a user's post to the DB",
+        "operationId": "createPost",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Properties that need to be sent for post creation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePostResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "[\"You must write a body for user post!\", \"Body must be between 4 to 2000 characters!\"]",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/posts/by/{userId}": {
+      "get": {
+        "tags": [
+          "posts"
+        ],
+        "summary": "Get all posts from a specific user",
+        "description": "Get all posts for a specific user from the DB",
+        "operationId": "postsByUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllPostsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      }
+    },
+    "/posts/{postId}": {
+      "get": {
+        "tags": [
+          "posts"
+        ],
+        "summary": "Get a single post with a specific postId",
+        "description": "Get all posts for a specific user from the DB",
+        "operationId": "singlePost",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "ID of a post as stored in the DB",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SinglePostResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/test": {
@@ -471,7 +648,8 @@
             "description": "ID of user as stored in the DB",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -593,6 +771,69 @@
           },
           "password": {
             "$ref": "#/components/schemas/Password"
+          }
+        }
+      },
+      "NewPost": {
+        "required": [
+          "body"
+        ],
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string",
+            "example": "This is my first post!"
+          }
+        }
+      },
+      "CreatePostResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SinglePostResponse"
+          }
+        ]
+      },
+      "SinglePostResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "body": {
+            "type": "string",
+            "example": "This is my first post!"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-02-10T13:20:15.424Z"
+          }
+        }
+      },
+      "AllPostsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "created": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2020-02-10T13:20:15.424Z"
+            },
+            "postedBy": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "John"
+                }
+              }
+            }
           }
         }
       },
