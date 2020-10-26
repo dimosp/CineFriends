@@ -1,7 +1,7 @@
 [![Linter](https://github.com/dimosp/CineFriends/workflows/Linter/badge.svg)](https://github.com/marketplace/actions/super-linter)
 [![GitHub license](https://img.shields.io/github/license/dimosp/CineFriends)](https://github.com/dimosp/CineFriends/blob/main/LICENSE)
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f22962336b86d85f7ebf#?env%5BCineFriends%20localhost%5D=W3sia2V5IjoiYWRkcmVzcyIsInZhbHVlIjoiMTI3LjAuMC4xIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3J0IiwidmFsdWUiOiI4MDgwIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJhcGkiLCJ2YWx1ZSI6ImFwaSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicHJvdG9jb2wiLCJ2YWx1ZSI6Imh0dHAiLCJlbmFibGVkIjp0cnVlfV0=)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/76630529e764aa915f80#?env%5BCineFriends%20localhost%5D=W3sia2V5IjoiYWRkcmVzcyIsInZhbHVlIjoiMTI3LjAuMC4xIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3J0IiwidmFsdWUiOiI4MDgwIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJhcGkiLCJ2YWx1ZSI6ImFwaSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicHJvdG9jb2wiLCJ2YWx1ZSI6Imh0dHAiLCJlbmFibGVkIjp0cnVlfV0=)
 
 # CineFriends 
 <p>
