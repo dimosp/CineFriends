@@ -26,5 +26,19 @@ MERN stands for MongoDB, Express, React, Node, after the four key technologies t
 
 For more information check out https://www.mongodb.com/mern-stack.
 
+## Running the project
+To run this project locally we have created a [BASH script](https://github.com/dimosp/CineFriends/blob/main/run-app.sh).
+This script installs all the required dependencies and starts both the backend (accesible from http://localhost:8080/api/) 
+and frontend (accesible from http://localhost:3000) of this project.
+
+You need to have [npm installed](https://www.npmjs.com/get-npm) for the script to run properly.
+
+To see how to run the script run ```./run-app.sh``` or ```./run-app.sh -h``` on a terminal in the same directory where the script is saved.
+If you leave the script file in the same directory as on this repository, then simply run ```./run-app.sh -p .```.
+
+After runnining the script for the first time, which might take a few minutes due to the installations, you can comment out
+lines 42 and 55 of [run-app.sh](https://github.com/dimosp/CineFriends/blob/main/run-app.sh), which have the ```npm install``` command.
+
+
 ## Contributing
 Until November 20, 2020, this project will be solely maintained by the **SKG.CODE Deadpool Team**.
