@@ -1,7 +1,7 @@
 [![Linter](https://github.com/dimosp/CineFriends/workflows/Linter/badge.svg)](https://github.com/marketplace/actions/super-linter)
 [![GitHub license](https://img.shields.io/github/license/dimosp/CineFriends)](https://github.com/dimosp/CineFriends/blob/main/LICENSE)
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f22962336b86d85f7ebf#?env%5BCineFriends%20localhost%5D=W3sia2V5IjoiYWRkcmVzcyIsInZhbHVlIjoiMTI3LjAuMC4xIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3J0IiwidmFsdWUiOiI4MDgwIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJhcGkiLCJ2YWx1ZSI6ImFwaSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicHJvdG9jb2wiLCJ2YWx1ZSI6Imh0dHAiLCJlbmFibGVkIjp0cnVlfV0=)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/76630529e764aa915f80#?env%5BCineFriends%20localhost%5D=W3sia2V5IjoiYWRkcmVzcyIsInZhbHVlIjoiMTI3LjAuMC4xIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3J0IiwidmFsdWUiOiI4MDgwIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJhcGkiLCJ2YWx1ZSI6ImFwaSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicHJvdG9jb2wiLCJ2YWx1ZSI6Imh0dHAiLCJlbmFibGVkIjp0cnVlfV0=)
 
 # CineFriends 
 <p>
@@ -25,6 +25,20 @@ MERN stands for MongoDB, Express, React, Node, after the four key technologies t
 -   *Node(.js)* - the premier JavaScript web server
 
 For more information check out https://www.mongodb.com/mern-stack.
+
+## Running the project
+To run this project locally we have created a [BASH script](https://github.com/dimosp/CineFriends/blob/main/run-app.sh).
+This script installs all the required dependencies and starts both the backend (accesible from http://localhost:8080/api/) 
+and frontend (accesible from http://localhost:3000) of this project.
+
+You need to have [npm installed](https://www.npmjs.com/get-npm) for the script to run properly.
+
+To see how to run the script run ```./run-app.sh``` or ```./run-app.sh -h``` on a terminal in the same directory where the script is saved.
+If you leave the script file in the same directory as on this repository, then simply run ```./run-app.sh -p .```.
+
+After runnining the script for the first time, which might take a few minutes due to the installations, you can comment out
+lines [42](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L42) and [55](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L55) of [run-app.sh](https://github.com/dimosp/CineFriends/blob/main/run-app.sh), which have the ```npm install``` command.
+
 
 ## Contributing
 Until November 20, 2020, this project will be solely maintained by the **SKG.CODE Deadpool Team**.

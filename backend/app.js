@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
 const expressValidator = require("express-validator");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./docs/openapi3.json");
@@ -33,6 +34,7 @@ mongoose.connection.on("error", err => {
 const testRoutes = require("./routes/test");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const postRoutes = require("./routes/post");
 
 // middleware
 
@@ -42,9 +44,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors());
 app.use("/api", testRoutes);
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
+app.use("/api", postRoutes);
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // handle unauthorized error
