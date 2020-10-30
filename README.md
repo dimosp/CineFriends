@@ -37,7 +37,7 @@ To see how to run the script run ```./run-app.sh``` or ```./run-app.sh -h``` on 
 If you leave the script file in the same directory as on this repository, then simply run ```./run-app.sh -p .```.
 
 After runnining the script for the first time, which might take a few minutes due to the installations, you can comment out
-lines 42 and 55 of [run-app.sh](https://github.com/dimosp/CineFriends/blob/main/run-app.sh), which have the ```npm install``` command.
+lines [42](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L42) and [55](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L55) of [run-app.sh](https://github.com/dimosp/CineFriends/blob/main/run-app.sh), which have the ```npm install``` command.
 
 
 ## Contributing
