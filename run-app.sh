@@ -51,10 +51,12 @@ while getopts ":hp:" option; do
 		 # focus back to the user in a Linux terminal.
 		 
 		 # Install frontend dependencies (this migth take a few minutes)
-		 cd $frontend_package_path
+		 cd ..
+       cd $frontend_package_path
 		 npm install &				# comment this line if you have everything installed
 		 # Run React.js app
 		 # Accesible from http://localhost:3000
+       cd ..
 		 cd $frontend_app_path
 		 npm start
 		 
