@@ -62,26 +62,35 @@ class Signup extends Component {
         <form>
 
             <div className="form-group">
-                <label className="text-muted">Name</label>
-                <input onChange={this.handleChange("name")} 
-                type="text" className="form-control"
-                value={name}
-                />
+                <div class="col-sm-3 my-1">
+                    <label className="text-muted">Name</label>
+                    <input onChange={this.handleChange("name")} 
+                    type="text" className="form-control"
+                    value={name}
+                    />
+                </div>
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input onChange={this.handleChange("email")} 
-                type="email" className="form-control"
-                value={email}
-                />
+                <div class="col-sm-3 my-1">
+                    <label className="text-muted">Email</label>
+                    <input onChange={this.handleChange("email")} 
+                    type="email" className="form-control"
+                    value={email}
+                    />
+                </div>
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input onChange={this.handleChange("password")} 
-                type="password" className="form-control"
-                value={password}/>
+                <div class="col-sm-3 my-1">
+                    <label className="text-muted">Password</label>
+                    <input onChange={this.handleChange("password")} 
+                    type="password" className="form-control"
+                    value={password}/>
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 8-32 characters long and contain at least one number.
+                    </small>
+                </div>
             </div>
 
             <button onClick={this.clickSubmit} className="btn btn-raised btn-dark">
