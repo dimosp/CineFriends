@@ -11,23 +11,23 @@ const Menu = ({history}) => (
     <div>
         <ul className='nav nav-tabs bg-info'>
             <li className='nav-item'>
-                <Link className='nav-link' style={isActive(history, '/'), {cursor: "pointer", color:'#fff'}} to='/'>Home</Link>
+                <Link className='nav-link' style={isActive(history, '/'), {cursor: "pointer", color:'#fff'}} to='/home'>Home</Link>
             </li>
             
-            {!isAuthenticated() && (
-                <>
-                    <li className='nav-item'>
-                        <Link className='nav-link' style={isActive(history, '/signin')} to='/signin'>Sign In</Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link className='nav-link' style={isActive(history, '/signup')} to='/signup'>Sign Up</Link>
-                    </li>
-                </>
-            )}
+//             {!isAuthenticated() && (
+//                 <>
+//                     <li className='nav-item'>
+//                         <Link className='nav-link' style={isActive(history, '/signin')} to='/signin'>Sign In</Link>
+//                     </li>
+//                     <li className='nav-item'>
+//                         <Link className='nav-link' style={isActive(history, '/signup')} to='/signup'>Sign Up</Link>
+//                     </li>
+//                 </>
+//             )}
 
             {isAuthenticated() && (
                 <>
-                   <li className='nav-item'>
+                    <li className='nav-item'>
                         <Link className='nav-link' style={isActive(history, '/post/create')} to={`/post/create`}>Create Post</Link>
                     </li>
 
