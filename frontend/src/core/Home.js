@@ -13,7 +13,7 @@ const Home = () => (
         <div className='container'>
             <Posts />
         </div> 
-        
+
     </div>
 );
 

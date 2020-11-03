@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class Signin extends Component {
@@ -75,25 +75,29 @@ class Signin extends Component {
         <form>
             
             <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input
-                    // Constantly checks to see if email field contains @ to verify that user gives us his email
-                    onChange={this.handleChange("email")} //  onChange detects when the value of an input element changes
-                    type="email"
-                    className="form-control"
-                    value={email}
-                />
+                <div class="col-sm-3 my-1">
+                    <label className="text-muted">Email</label>
+                    <input
+                        // Constantly checks to see if email field contains @ to verify that user gives us his email
+                        onChange={this.handleChange("email")} //  onChange detects when the value of an input element changes
+                        type="email"
+                        className="form-control"
+                        value={email}
+                    />
+                </div>
             </div>
         
             <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input
-                    // Constantly checks to verify if user gives us password
-                    onChange={this.handleChange("password")} 
-                    type="password"
-                    className="form-control"
-                    value={password}
-                />
+                <div class="col-sm-3 my-1">
+                    <label className="text-muted">Password</label>
+                    <input
+                        // Constantly checks to verify if user gives us password
+                        onChange={this.handleChange("password")} 
+                        type="password"
+                        className="form-control"
+                        value={password}
+                    />
+                </div>
             </div>
 
             <button
@@ -102,6 +106,8 @@ class Signin extends Component {
             >
                 Sign In
             </button>
+            <br></br>
+            Don't have an account? {" "} <Link to="/signup">Sign Up</Link>
         </form>
     );
 
@@ -132,8 +138,8 @@ class Signin extends Component {
                      ""
                  )}
 
-
                 {this.signinForm(email, password)}
+                
             </div>
         );
     }
