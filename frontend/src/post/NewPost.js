@@ -58,9 +58,10 @@ class NewPost extends Component {
             
         this.postData.set(name, value);
 
-        console.log(this.postData.body);
+        console.log(this.postData.get("body"));
 
-        this.setState({[name]: value, fileSize});
+        this.setState({ [name]: value });
+
     };
 
     clickSubmit = event => {
