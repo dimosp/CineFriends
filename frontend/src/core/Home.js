@@ -6,7 +6,7 @@ const Home = () => (
 
         <div className='jumbotron'>
             <h2>Home</h2>
-            <p className='lead'>Welcome to React Front-End</p>
+            <p className='lead'>Welcome to Binge</p>
 
         </div>
 
