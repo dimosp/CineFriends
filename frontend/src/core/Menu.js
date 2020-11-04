@@ -14,21 +14,21 @@ const Menu = ({history}) => (
                 <Link className='nav-link' style={isActive(history, '/'), {cursor: "pointer", color:'#fff'}} to='/home'>Home</Link>
             </li>
             
-//             {!isAuthenticated() && (
-//                 <>
-//                     <li className='nav-item'>
-//                         <Link className='nav-link' style={isActive(history, '/signin')} to='/signin'>Sign In</Link>
-//                     </li>
-//                     <li className='nav-item'>
-//                         <Link className='nav-link' style={isActive(history, '/signup')} to='/signup'>Sign Up</Link>
-//                     </li>
-//                 </>
-//             )}
+             {/* {!isAuthenticated() && (
+                <>
+                    <li className='nav-item'>
+                        <Link className='nav-link' style={isActive(history, '/signin')} to='/signin'>Sign In</Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link className='nav-link' style={isActive(history, '/signup')} to='/signup'>Sign Up</Link>
+                    </li>
+                </>
+            )} */}
 
             {isAuthenticated() && (
                 <>
                     <li className='nav-item'>
-                        <Link className='nav-link' style={isActive(history, '/post/create')} to={`/post/create`}>Create Post</Link>
+                        <Link className='nav-link' style={isActive(history, '/post/create'), {cursor: "pointer", color:'#fff'}} to={`/post/create`}>Create Post</Link>
                     </li>
 
                     <li className='nav-item'>

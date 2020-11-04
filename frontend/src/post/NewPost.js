@@ -128,18 +128,20 @@ class NewPost extends Component {
             </div> */}
                 
             <div className='form-group'>
-                <label className='text-muted'>Body</label>
-                <textarea
-                    onChange={this.handleChange('body')}
-                    type='text'
-                    className='form-control'
-                    value={body}
-                />
+                <div class="col-sm-6 my-1">
+                    <label className='text-muted'>Write something here...</label>
+                    <textarea
+                        onChange={this.handleChange('body')}
+                        type='text'
+                        className='form-control'
+                        value={body}
+                    />
+                </div>
             </div>
             
             <button
                 onClick={this.clickSubmit}
-                className='btn btn-raised btn-primary'
+                className='btn btn-raised btn-dark'
             >
                 Create Post
             </button>
