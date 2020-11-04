@@ -11,10 +11,10 @@ const Menu = ({history}) => (
     <div>
         <ul className='nav nav-tabs bg-info'>
             <li className='nav-item'>
-                <Link className='nav-link' style={isActive(history, '/')} to='/home'>Home</Link>
+                <Link className='nav-link' style={isActive(history, '/'), {cursor: "pointer", color:'#fff'}} to='/home'>Home</Link>
             </li>
             
-            {/* {!isAuthenticated() && (
+             {/* {!isAuthenticated() && (
                 <>
                     <li className='nav-item'>
                         <Link className='nav-link' style={isActive(history, '/signin')} to='/signin'>Sign In</Link>
@@ -28,7 +28,11 @@ const Menu = ({history}) => (
             {isAuthenticated() && (
                 <>
                     <li className='nav-item'>
-                        <a className='nav-link'>{isAuthenticated().user.name}</a>   
+                        <Link className='nav-link' style={isActive(history, '/post/create'), {cursor: "pointer", color:'#fff'}} to={`/post/create`}>Create Post</Link>
+                    </li>
+
+                    <li className='nav-item'>
+                        <a className='nav-link' style={isActive(history), {cursor: "pointer", color:'#fff'}}>{isAuthenticated().user.name}</a>   
                     </li>
 
                     <li className='nav-item'>
