@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const { v1: uuidv1 } = require('uuid');
 // used to hash password
-const crypto = require("crypto")
+const crypto = require("crypto");
+const { ObjectId } = mongoose.Schema;
 
 // schema object to define properties of user
 const userSchema = new mongoose.Schema({
@@ -24,7 +25,14 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    updated: Date
+    updated: Date,
+    
+    following: [{ type: ObjectId, ref: "User" }],
+    followers: [{ type: ObjectId, ref: "User" }],
+    resetPasswordLink: {
+        data: String,
+        default: ""
+    },
 });
 
 
