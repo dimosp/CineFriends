@@ -1,0 +1,22 @@
+.my-primary {
+    background-color: #4c64d5;
+}
+
+.navbar-form {
+    position: relative;
+    max-width: 100%;
+}
+    .navbar-form ul.list-group {
+        position: absolute;
+        width: auto;
+        background: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+
+        /*This is relative to the navbar now*/
+        left: 0;
+        right: 0;
+        top: 40px;
+    }

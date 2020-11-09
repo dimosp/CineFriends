@@ -2,6 +2,8 @@ import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {signout, isAuthenticated} from '../auth/index';
 import $ from 'jquery';
+import './Custom.css';
+
 
 const isActive = (history, path) => {
     if(history.location.pathname === path) return {color: '#000000'}
@@ -28,7 +30,7 @@ function Menu({ history }) {
                 console.log("Success data fetch")
                 const userResults = searchResults.users
                 console.log(userResults[0])
-                
+
                 setSearchResults(userResults);
 
             },
@@ -41,27 +43,31 @@ function Menu({ history }) {
 
     }, [searchTerm]);
 
+    if (!isAuthenticated()) {
+        return (
+            <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom">
 
-    return (
-        <div>
-            <ul className='nav nav-tabs bg-info'>
-                <li className='nav-item'>
-                    <Link className='nav-link' style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
-                </li>
-
-                {/* {!isAuthenticated() && (
-                <>
-                    <li className='nav-item'>
-                        <Link className='nav-link' style={isActive(history, '/signin')} to='/signin'>Sign In</Link>
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                        <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
                     </li>
-                    <li className='nav-item'>
-                        <Link className='nav-link' style={isActive(history, '/signup')} to='/signup'>Sign Up</Link>
-                    </li>
-                </>
-            )} */}
+                </ul>
+            </nav>
+        );
 
-                {isAuthenticated() && (
-                    <>
+
+    }
+    else if (isAuthenticated()){
+        return (
+
+            <nav className="navbar navbar-expand-md navbar-dark my-primary">
+
+                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item active">
+                            <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
+                        </li>
+
                         <li className='nav-item'>
                             <Link className='nav-link' style={isActive(history, '/post/create'), { cursor: "pointer", color: '#fff' }} to={`/post/create`}>Create Post</Link>
                         </li>
@@ -69,36 +75,47 @@ function Menu({ history }) {
                         <li className='nav-item'>
                             <a className='nav-link' style={isActive(history), { cursor: "pointer", color: '#fff' }}>{isAuthenticated().user.name}</a>
                         </li>
+                    </ul>
+                </div>
 
-                        <li className='nav-item'>
+                <div class="mx-auto order-0">
+                    <form className="form-inline my-2 my-lg-0 navbar-form">
+                        <input
+                                    className="form-control mr-sm-2"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                    value={searchTerm}
+                                    onChange={handleChange}
+                                />
+
+
+                            <ul component="nav" aria-label="user results" class="list-group ">
+                                {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(name => (
+                                    <li class="list-group-item" >
+
+                                        <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }} to='/home'>{name}</Link>
+                                        
+                                    </li>
+                                ))}
+
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
+                        <li className='nav-item d-flex flex-row-reverse'>
                             <a className='nav-link' style={isActive(history, '/signup'), { cursor: "pointer", color: '#fff' }}
                                 onClick={() => signout(() => history.push('/'))}>Sign Out</a>
                         </li>
+                    </ul>
+                </div>
 
-                        <li className='nav-item'>
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                value={searchTerm}
-                                onChange={handleChange}
-                            />
-                        </li>
-
-                        <ul component="nav" aria-label="user results" className='nav-item'>
-                            {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(name => (
-                                <li >
-
-                                   {name}
-
-                                </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
-
-            </ul>
-        </div>
-    );
+            </nav>
+        );
+    }
+   
 }
 
 export default withRouter(Menu);
