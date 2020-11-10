@@ -575,6 +575,124 @@
         }
       }
     },
+    "/posts/comment": {
+      "put": {
+        "tags": [
+          "posts"
+        ],
+        "summary": "Create a comment",
+        "description": "Send a user's comment to the DB",
+        "operationId": "comment",
+        "requestBody": {
+          "description": "Properties that need to be sent for user comment",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/SendComment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/posts/uncomment": {
+      "put": {
+        "tags": [
+          "posts"
+        ],
+        "summary": "Remove a comment",
+        "description": "Delete a user's comment from the DB",
+        "operationId": "uncomment",
+        "requestBody": {
+          "description": "Properties that need to be sent for a user to remove a comment of his/hers",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteComment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized action!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ],
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/test": {
       "get": {
         "tags": [
@@ -834,6 +952,116 @@
                 }
               }
             }
+          }
+        }
+      },
+      "CommentsResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "body": {
+            "type": "string",
+            "example": "This is my post."
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-02-10T13:20:15.424Z"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          },
+          "postedBy": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "example": "Tom"
+              }
+            }
+          },
+          "__v": {
+            "type": "integer",
+            "example": 0
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "example": "This is my comment!"
+          },
+          "postedBy": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "example": "John"
+              }
+            }
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-02-10T13:20:15.424Z"
+          }
+        }
+      },
+      "SendComment": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "postId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "comment": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "example": "This is one of my comments!"
+              }
+            }
+          }
+        }
+      },
+      "DeleteComment": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "postId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "comment": {
+            "$ref": "#/components/schemas/Comment"
           }
         }
       },
