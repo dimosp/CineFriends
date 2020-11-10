@@ -72,3 +72,28 @@ exports.deleteUser = (req, res, next) => {
         res.json({message: "User deleted successfully!"});
     });
 };
+
+exports.addFollowing = (req, res, next) => {
+    User.findByIdAndUpdate(req.body.userId, { $push: { following: req.body.followId } }, (err, result) => {
+        if (err) {
+            return res.status(400).json({ error: err });
+        }
+        next();
+    });
+};
+
+exports.addFollower = (req, res) => {
+    User.findByIdAndUpdate(req.body.followId, { $push: { followers: req.body.userId } }, { new: true })
+        .populate('following', '_id name')
+        .populate('followers', '_id name')
+        .exec((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            result.hashed_password = undefined;
+            result.salt = undefined;
+            res.json(result);
+        });
+};

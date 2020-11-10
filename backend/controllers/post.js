@@ -22,7 +22,7 @@ exports.getPosts = (req, res) => {
         .populate("postedBy", "_id name")
         .populate("comment", "text created")
         .populate("comments.postedBy", "_id name")
-        .select("_id body created ")
+        .select("_id body created likes ")
         .sort({ created: -1 })
         .then(posts => {
             res.json(posts);
@@ -50,6 +50,7 @@ exports.createPost = (req, res) => {
 exports.postsByUser = (req, res) => {
     Post.find({ postedBy: req.profile._id })
         .populate('postedBy', '_id name')
+        .select('_id title body created likes')
         .select('_id body created ')
         .sort('_created')
         .exec((err, posts) => {
@@ -78,6 +79,34 @@ exports.singlePost = (req, res) => {
     return res.json(req.post);
 };
 
+exports.like = (req, res) => {
+    Post.findByIdAndUpdate(req.body.postId, { $push: { likes: req.body.userId } }, { new: true }).exec(
+        (err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            } else {
+                res.json(result);
+            }
+        }
+    );
+};
+
+exports.unlike = (req, res) => {
+    Post.findByIdAndUpdate(req.body.postId, { $pull: { likes: req.body.userId } }, { new: true }).exec(
+        (err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            } else {
+                res.json(result);
+            }
+        }
+    );
+};
+
 exports.comment = (req, res) => {
     let comment = req.body.comment;
     comment.postedBy = req.body.userId;
@@ -93,7 +122,8 @@ exports.comment = (req, res) => {
             } else {
                 res.json(result);
             }
-        });
+        }
+    );
 };
 
 exports.uncomment = (req, res) => {
@@ -110,5 +140,6 @@ exports.uncomment = (req, res) => {
             } else {
                 res.json(result);
             }
-        });
+        }
+    );
 };

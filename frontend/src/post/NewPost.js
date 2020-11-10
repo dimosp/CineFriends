@@ -8,8 +8,7 @@ import {Redirect} from 'react-router-dom';
 class NewPost extends Component {
     constructor() {
         super();
-        this.state = {
-            // title: '', 
+        this.state = { 
             body: '',
             // photo: '',
             error: '',
@@ -26,8 +25,6 @@ class NewPost extends Component {
     }
 
     isValid = () => {
-        // const {title, body, fileSize} = this.state;
-
         const {body, fileSize} = this.state;
         if (fileSize>100000) {
             this.setState({
@@ -36,7 +33,6 @@ class NewPost extends Component {
             });
             return false;
         }
-        // if (title.length === 0 || body.length === 0) {
         if (body.length === 0) {
             this.setState({error: 'All fields are required', loading: false});
             return false;
@@ -73,9 +69,7 @@ class NewPost extends Component {
             const token = isAuthenticated().token;
 
 
-            create(userId, token, this.postData) 
-            // console.log(this.state.body);
-            // console.log(this.state.body.stringify)
+            create(userId, token, this.postData)
             .then(data => {
                 console.log(data);
                 if (data.error) this.setState({ error: data.error});
@@ -83,7 +77,6 @@ class NewPost extends Component {
                     console.log('New Post: ', data);
                     this.setState({ 
                         loading: false,
-                        // title: '',
                         body: '',
                         // photo: '',
                         redirectToProfile: true
@@ -91,18 +84,6 @@ class NewPost extends Component {
             });
         }
     };
-
-
-
-            // .then(data => {
-            //     console.log('New Post: ', data);
-            // })
-            // .catch(data.error) this.setState({ error: data.error})
-            // });
-                           
-    //     }
-    // };
-    // newPostForm = (title, body) => (
 
     newPostForm = (body) => (
         <form>
@@ -114,16 +95,6 @@ class NewPost extends Component {
                     type='file'
                     accept='image/*'
                     className='form-control'
-                />
-            </div> */}
-
-            {/* <div className='form-group'>
-                <label className='text-muted'>Title</label>
-                <input
-                    onChange={this.handleChange('title')}
-                    type='text'
-                    className='form-control'
-                    value={title}
                 />
             </div> */}
                 
@@ -150,7 +121,6 @@ class NewPost extends Component {
 
     render() {
         const {
-            // title,
             body,
             // photo,
             user, 
@@ -163,8 +133,6 @@ class NewPost extends Component {
             return <Redirect to={`/user/${user._id}`} />;
         }
 
-        
-            
         return (
             <div className='container'>
                 <h2 className='mt-5 mb-5'>Create a New Post</h2>
@@ -182,8 +150,6 @@ class NewPost extends Component {
                 ) : (
                     ''
                 )}
-                    
-                {/* {this.newPostForm(title, body)} */}
 
                 {this.newPostForm(body)}
             </div>
