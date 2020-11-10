@@ -46,12 +46,13 @@ function Menu({ history }) {
     if (!isAuthenticated()) {
         return (
             <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom">
-
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
-                    </li>
-                </ul>
+                <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item active">
+                            <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         );
 
@@ -61,8 +62,11 @@ function Menu({ history }) {
         return (
 
             <nav className="navbar navbar-expand-md navbar-dark my-primary">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav, #sign-out" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center" id="main-nav">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
@@ -103,9 +107,9 @@ function Menu({ history }) {
                     </form>
                 </div>
 
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <div class="navbar-collapse w-100 order-3 dual-collapse2" id="sign-out">
                     <ul class="navbar-nav ml-auto">
-                        <li className='nav-item d-flex flex-row-reverse'>
+                        <li className='nav-item d-flex flex-row-reverse' >
                             <a className='nav-link' style={isActive(history, '/signup'), { cursor: "pointer", color: '#fff' }}
                                 onClick={() => signout(() => history.push('/'))}>Sign Out</a>
                         </li>
