@@ -1,5 +1,6 @@
 import React from 'react';
 import Posts from '../post/Posts';
+import InfiniteScroll from "./infiniteScroll.js";
 
 const Home = () => (
     <div>
@@ -11,7 +12,7 @@ const Home = () => (
         </div>
 
         <div className='container'>
-            <Posts />
+            <InfiniteScroll/>
         </div> 
 
     </div>

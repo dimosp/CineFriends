@@ -93,7 +93,6 @@ function Menu({ history }) {
                                     onChange={handleChange}
                                 />
 
-
                             <ul component="nav" aria-label="user results" class="list-group ">
                                 {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(name => (
                                     <li class="list-group-item" >
