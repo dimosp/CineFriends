@@ -1,4 +1,7 @@
 const Post = require("../models/post");
+const formidable = require('formidable');
+const fs = require('fs');
+const _ = require('lodash');
 
 exports.postById = (req, res, next, id) => {
     Post.findById(id)
@@ -30,20 +33,33 @@ exports.getPosts = (req, res) => {
         .catch(err => console.log(err));
 };
 
-exports.createPost = (req, res) => {
-    const post = new Post(req.body);
-
-    req.profile.hashed_password = undefined;
-    req.profile.salt = undefined;
-    post.postedBy = req.profile;
-
-    post.save((err, result) => {
+exports.createPost = (req, res, next) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
         if (err) {
             return res.status(400).json({
-                error: err
+                error: 'Image could not be uploaded'
             });
         }
-        res.json(result);
+        let post = new Post(fields);
+
+        req.profile.hashed_password = undefined;
+        req.profile.salt = undefined;
+        post.postedBy = req.profile;
+
+        if (files.photo) {
+            post.photo.data = fs.readFileSync(files.photo.path);
+            post.photo.contentType = files.photo.type;
+        }
+        post.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json(result);
+        });
     });
 };
 
@@ -77,6 +93,50 @@ exports.isPoster = (req, res, next) => {
 
 exports.singlePost = (req, res) => {
     return res.json(req.post);
+};
+
+exports.updatePost = (req, res, next) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'Photo could not be uploaded'
+            });
+        }
+        // save post
+        let post = req.post;
+        post = _.extend(post, fields);
+        post.updated = Date.now();
+
+        if (files.photo) {
+            post.photo.data = fs.readFileSync(files.photo.path);
+            post.photo.contentType = files.photo.type;
+        }
+
+        post.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json(post);
+        });
+    });
+};
+
+exports.deletePost = (req, res) => {
+    let post = req.post;
+    post.remove((err, post) => {
+        if (err) {
+            return res.status(400).json({
+                error: err
+            });
+        }
+        res.json({
+            message: 'Post deleted successfully'
+        });
+    });
 };
 
 exports.like = (req, res) => {
@@ -142,4 +202,9 @@ exports.uncomment = (req, res) => {
             }
         }
     );
+};
+
+exports.photo = (req, res, next) => {
+    res.set('Content-Type', req.post.photo.contentType);
+    return res.send(req.post.photo.data);
 };
