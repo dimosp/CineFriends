@@ -22,7 +22,7 @@ function Menu({ history }) {
     };
 
     React.useEffect(() => {
-        const urlString = "http://localhost:8080/api/users"
+        const urlString = `${process.env.REACT_APP_API_URL}/users`
         $.ajax({
             url: urlString,
 
