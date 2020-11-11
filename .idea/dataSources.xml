@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="CineFriends" uuid="8b753267-644c-4dd4-91d2-6b5f3de94966">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cinephil:skgcodedeadpools@cinefriends.t47zz.mongodb.net/&lt;dbname&gt;?retryWrites=true&amp;w=majority</jdbc-url>
+    </data-source>
+  </component>
+</project>

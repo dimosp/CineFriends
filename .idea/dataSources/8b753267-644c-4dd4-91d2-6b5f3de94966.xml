@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="CineFriends">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.19">
+    <root id="1">
+      <ServerVersion>4.2.10</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="&lt;cinefriends&gt;"/>
+    <schema id="3" parent="1" name="&lt;dbname&gt;">
+      <Current>1</Current>
+    </schema>
+    <schema id="4" parent="1" name="admin"/>
+    <schema id="5" parent="1" name="cinefriends"/>
+    <schema id="6" parent="1" name="local"/>
+    <table id="7" parent="3" name="posts"/>
+    <table id="8" parent="3" name="users"/>
+    <column id="9" parent="7" name="_id">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="10" parent="7" name="body">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="11" parent="7" name="postedBy">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="12" parent="7" name="__v">
+      <Position>1</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="13" parent="7" name="created">
+      <Position>1</Position>
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="14" parent="8" name="_id">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="15" parent="8" name="__v">
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="16" parent="8" name="created">
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="17" parent="8" name="salt">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="18" parent="8" name="email">
+      <Position>1</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="19" parent="8" name="updated">
+      <Position>1</Position>
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="20" parent="8" name="hashed_password">
+      <Position>2</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="21" parent="8" name="name">
+      <Position>3</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+  </database-model>
+</dataSource>
