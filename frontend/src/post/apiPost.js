@@ -5,7 +5,7 @@
 //   }
 
 export const create = (userId, token, post) => {
-    return fetch(`http://localhost:8080/api/posts/new/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/${userId}`, {
         method: 'POST',
         headers: {
             Accept: "application/json",
@@ -26,7 +26,7 @@ export const create = (userId, token, post) => {
 // fetch(`${process.env.REACT_APP_API_URL}/posts`
 
 export const list = () => {
-    return fetch(`http://localhost:8080/api/posts`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         method: 'GET'
     })
         .then(response => {
