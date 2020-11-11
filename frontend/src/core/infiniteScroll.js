@@ -22,7 +22,7 @@ const InfiniteScroll = () => {
     // tracking on which page we currently are
     const [page, setPage] = useState(1);
 
-    const [testPost, setTestPost] = useState(5);
+    const [postCount, setPostCount] = useState(0);
     // add loader refrence 
     const loader = useRef(null);
 
@@ -35,8 +35,7 @@ const InfiniteScroll = () => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
-                    setPostList(data.slice(0,5))
-
+                    setPostList(data.slice(0, 5))
                 }
             });
 
@@ -66,15 +65,18 @@ const InfiniteScroll = () => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
+                    var increment = 5;
+                    if (postCount + increment > data.length) {
+                        increment = data.length;
+                    }
 
-                    setPostList(postList.concat(data.slice(testPost, testPost+5)))//data.slice(0, testPost + 5))
-                    setTestPost(testPost + 5)
-                    console.log(postList.concat(data.slice(testPost, testPost + 5)))
+
+                    setPostList(postList.concat(data.slice(postCount, postCount + increment)))
+                    setPostCount(postCount + increment)
 
 
                 }
             });
-        console.log("Hello")
     }, [page])
 
     // here we handle what happens when user scrolls to Load More div
@@ -88,16 +90,34 @@ const InfiniteScroll = () => {
 
 
     return (<div className="container" style={containerStyle}>
-        <div className="post-list">
-            {
-                postList.map(post => {
-                    return (<div className="post" style={divStyle}>
-                        <h2> {post.body} </h2>
-                    </div>)
-                })
-            }
+        <div className="post-list col-xs-1" align="center">
+            {postList.map((post, i) => {
+                const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
+                const posterName = post.postedBy ? post.postedBy.name : " Unknown";
+
+                return (
+                    <div className='card col-md-4 mb-5' key={i}>
+                        <div className='card-body'>
+                            <p className='card-text'>{post.body.substring(0, 100)}</p>
+                            <br />
+                            <p className='font-italic mark'>
+                                Posted by <Link to={`${posterId}`}>{posterName}</Link>
+                                {" "}
+                                on {new Date(post.created).toDateString()}
+                            </p>
+
+                            <Link
+                                to={`/posts/${post._id}`}
+                                className='btn btn-raised btn-dark btn-sm'
+                            >
+                                Read More
+                            </Link>
+                        </div>
+                    </div>
+                )
+            })}
             <div className="loading" ref={loader}>
-                <h2>Load More</h2>
+                <h2>No more posts! Why not try to create some yourself?</h2>
             </div>
         </div>
     </div>)
