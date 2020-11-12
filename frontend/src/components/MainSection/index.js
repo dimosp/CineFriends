@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {MainContainer, MainBg, VideoBg, MainContent, MainH1, MainP, MainBtnWrapper, ArrowForward, ArrowRight } from './MainElements';
 import {Button} from '../ButtonElement';
-import Video from '../../videos/video2.mp4';
+import Video from '../../videos/video1.mp4';
 
 const MainSection = () => {
     const [hover, setHover] = useState(false);
@@ -21,7 +21,7 @@ const MainSection = () => {
             From giving your thoughts on the latest releases, to finding recommendations from your friends, Binge is your go-to place to share everything cinema related.
             </MainP>
             <MainBtnWrapper>
-                <Button to='signup'onMouseEnter={onHover} onMouseLeave={onHover}
+                <Button to='/Signup'onMouseEnter={onHover} onMouseLeave={onHover}
                 primary='true' dark='true' >Get Started{hover ? <ArrowForward/> : <ArrowRight/>} </Button>
             </MainBtnWrapper>
             </MainContent>

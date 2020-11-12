@@ -1,7 +1,6 @@
 // This is where we gonna store our styled-component
 import styled from 'styled-components';
 import { Link as LinkR } from 'react-router-dom';
-import { Link as LinkS } from 'react-scroll';
 
 
 export const Nav = styled.nav`
@@ -77,7 +76,7 @@ export const NavItem = styled.li `
 `;
 
 // No need i think
-export const NavLinks = styled(LinkS) `
+export const NavLinks = styled(LinkR) `
     color: #fff;
     display: flex;
     align-items: center;
