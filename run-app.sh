@@ -12,7 +12,7 @@ Help()
    echo "Usage: ./run-app.sh [-h|p]"
    echo "Options:"
    echo "h     Print this Help."
-   echo "p     Give the path to the route directory of the project."
+   echo "p     Give the path to the root directory of the project."
    echo
    echo	"Examples: 1) ./run-app -p ~/Documents/CineFriends"
    echo	"	  2) ./run-app -p ."
@@ -32,7 +32,7 @@ while getopts ":hp:" option; do
       h) # display Help
          Help
          exit;;
-      p) # give the path to the route directory
+      p) # give the path to the root directory
          backend_path="${2}/backend"
 	 frontend_package_path="${2}/frontend"
 	 frontend_app_path="${2}/frontend/src"
@@ -53,7 +53,7 @@ while getopts ":hp:" option; do
 	 # Install frontend dependencies (this migth take a few minutes)
 	 cd ..
          cd $frontend_package_path
-	 #npm install &				# comment this line if you have everything installed
+	 npm install &				# comment this line if you have everything installed
 	 # Run React.js app
 	 # Accesible from http://localhost:3000
          cd ..
