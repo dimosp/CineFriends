@@ -24,7 +24,7 @@ const InfiniteScroll = () => {
     const [page, setPage] = useState(1);
 
     const [postCount, setPostCount] = useState(0);
-    // add loader refrence 
+    // add loader reference 
     const loader = useRef(null);
 
 
