@@ -86,7 +86,7 @@ class NewPost extends Component {
     };
 
     newPostForm = (body) => (
-        <form>
+        <form className="">
                 
             {/* <div className='form-group'>
                 <label className='text-muted'>Photo Post</label>
@@ -99,23 +99,24 @@ class NewPost extends Component {
             </div> */}
                 
             <div className='form-group'>
-                <div class="col-sm-6 my-1">
-                    <label className='text-muted'>Write something here...</label>
+                <div class="text-center">
                     <textarea
                         onChange={this.handleChange('body')}
                         type='text'
+                        placeholder="Write something here..."
                         className='form-control'
                         value={body}
                     />
                 </div>
             </div>
-            
-            <button
-                onClick={this.clickSubmit}
-                className='btn btn-raised btn-dark'
-            >
-                Create Post
-            </button>
+            <div className="text-center">
+                <button
+                    onClick={this.clickSubmit}
+                    className='btn my-create-post-button'
+                >
+                    Create Post
+                </button>
+        </div>
         </form>
     );
 
@@ -134,8 +135,7 @@ class NewPost extends Component {
         }
 
         return (
-            <div className='container'>
-                <h2 className='mt-5 mb-5'>Create a New Post</h2>
+            <div className='container '>
                 <div
                     className='alert alert-danger'
                     style={{display: error ? "" : "none"}}
@@ -144,7 +144,7 @@ class NewPost extends Component {
                 </div>
 
                 {loading ? (
-                    <div className='jumpotron text-center'>
+                    <div className='jumbotron text-center'>
                         <h2>Loading...</h2>
                     </div>
                 ) : (

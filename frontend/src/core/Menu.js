@@ -46,7 +46,7 @@ function Menu({ history }) {
     if (!isAuthenticated()) {
 
         return (
-            <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom sticky-top ">
+            <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom sticky-top">
                 
                 <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
@@ -74,11 +74,11 @@ function Menu({ history }) {
                         <li className="nav-item active">
                             <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
                         </li>
-
+                        {/*
                         <li className='nav-item'>
                             <Link className='nav-link' style={isActive(history, '/post/create'), { cursor: "pointer", color: '#fff' }} to={`/post/create`}>Create Post</Link>
                         </li>
-
+                        */}
                         <li className='nav-item'>
                             <a className='nav-link' style={isActive(history), { cursor: "pointer", color: '#fff' }}>{isAuthenticated().user.name}</a>
                         </li>

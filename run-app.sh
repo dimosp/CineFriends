@@ -53,7 +53,7 @@ while getopts ":hp:" option; do
 	 # Install frontend dependencies (this migth take a few minutes)
 	 cd ..
          cd $frontend_package_path
-	 npm install &				# comment this line if you have everything installed
+	 #npm install &				# comment this line if you have everything installed
 	 # Run React.js app
 	 # Accesible from http://localhost:3000
          cd ..

@@ -5,9 +5,8 @@
     height: calc(100% + 50px);
 }
 
-.post-header div{
+.my-create-post-button {
     background-color: #4c64d5;
-    opacity: 0.65;
-}
 
+}
 
