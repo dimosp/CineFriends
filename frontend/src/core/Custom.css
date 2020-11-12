@@ -6,7 +6,7 @@
     position: relative;
     max-width: 100%;
 }
-    .navbar-form ul.list-group {
+.navbar-form ul.list-group {
         position: absolute;
         width: auto;
         background: white;
@@ -19,4 +19,4 @@
         left: 0;
         right: 0;
         top: 40px;
-    }
+}

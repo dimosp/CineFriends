@@ -19,7 +19,7 @@ const MainRouter = () => (
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/post/create' component={NewPost} /> 
+            {/*<Route exact path='/post/create' component={NewPost} />*/}
             {/* make it PrivateRoute */}
         </Switch>
     </div>
