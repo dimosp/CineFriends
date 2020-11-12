@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Posts from '../post/Posts';
+import Post from '../post/Post';
 import { Link } from 'react-router-dom';
 import { list } from '../post/apiPost';
 
@@ -87,16 +88,8 @@ const InfiniteScroll = () => {
             setPage((page) => page + 1)
         }
     }
-
-
-    return (<div className="container" style={containerStyle}>
-        <div className="post-list col-xs-1" align="center">
-            {postList.map((post, i) => {
-                const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
-                const posterName = post.postedBy ? post.postedBy.name : " Unknown";
-
-                return (
-                    <div className='card col-md-4 mb-5' key={i}>
+    /*
+     *                     <div className='card col-md-4 mb-5' key={i}>
                         <div className='card-body'>
                             <p className='card-text'>{post.body.substring(0, 100)}</p>
                             <br />
@@ -114,8 +107,21 @@ const InfiniteScroll = () => {
                             </Link>
                         </div>
                     </div>
+*/
+
+    return (<div className="container" style={containerStyle}>
+        <div className="post-list col-xs-1" align="center">
+
+ 
+            {postList.map((post, i) => {
+                const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
+                const posterName = post.postedBy ? post.postedBy.name : " Unknown";
+
+                return (
+                    <Post posterId={posterId} posterName={posterName} created={post.created} body={post.body} />
                 )
             })}
+            
             <div className="loading" ref={loader}>
                 <h2>No more posts! Why not try to create some yourself?</h2>
             </div>

@@ -1,0 +1,13 @@
+
+.wrap {
+    background-image: url(https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+    background-size: cover;
+    height: calc(100% + 50px);
+}
+
+.post-header div{
+    background-color: #4c64d5;
+    opacity: 0.65;
+}
+
+

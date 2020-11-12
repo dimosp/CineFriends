@@ -79,7 +79,7 @@ class NewPost extends Component {
                         loading: false,
                         body: '',
                         // photo: '',
-                        redirectToProfile: true
+                        redirectToProfile: false
                     })};
             });
         }
