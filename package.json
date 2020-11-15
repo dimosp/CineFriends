@@ -1,0 +1,19 @@
+{
+  "name": "binge",
+  "version": "1.0.0",
+  "description": "A social network for movie enthusiasts",
+  "scripts": {
+    "build": "(cd frontend && npm install && npm run build && cd ..) && (cd backend && npm install)",
+    "start": "(cd backend && npm start && cd ..)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimosp/CineFriends.git"
+  },
+  "author": "Deadpool SKGCODE Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimosp/CineFriends/issues"
+  },
+  "homepage": "https://github.com/dimosp/CineFriends#readme"
+}

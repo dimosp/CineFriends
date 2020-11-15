@@ -5,6 +5,7 @@ const cors = require("cors");
 const expressValidator = require("express-validator");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./docs/openapi3.json");
+const path = require('path');
 
 // in order to parse incoming request bodies with req.body property
 const bodyParser = require("body-parser");
@@ -56,6 +57,14 @@ app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
       res.status(401).json({error: "Unauthorized action!"});
     }
+});
+
+const buildPath = path.join(__dirname, '..', 'frontend', 'build');
+const indexdPath = path.join(__dirname, '..', 'frontend', 'build', 'index.html');
+app.use(express.static(buildPath));
+
+app.get('/*', function (req, res) {
+  res.sendFile(indexdPath);
 });
 
 // listening on environment port if defined or 8080
