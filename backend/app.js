@@ -59,11 +59,12 @@ app.use(function (err, req, res, next) {
     }
 });
 
-const buildPath = path.join(__dirname, 'frontend', 'build');
+const buildPath = path.join(__dirname, '..', 'frontend', 'build');
+const indexdPath = path.join(__dirname, '..', 'frontend', 'build', 'index.html');
 app.use(express.static(buildPath));
 
 app.get('/*', function (req, res) {
-  res.sendFile(buildPath);
+  res.sendFile(indexdPath);
 });
 
 // listening on environment port if defined or 8080
