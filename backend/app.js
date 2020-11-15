@@ -62,6 +62,10 @@ app.use(function (err, req, res, next) {
 const buildPath = path.join(__dirname, 'frontend', 'build');
 app.use(express.static(buildPath));
 
+app.get('/*', function (req, res) {
+  res.sendFile(buildPath);
+});
+
 // listening on environment port if defined or 8080
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
