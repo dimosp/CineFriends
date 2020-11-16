@@ -6,7 +6,7 @@ import NewPost from '../post/NewPost';
 const Home = () => (
     <div>
 
-        <div className=' card row text-center col-xs-1 p-5' align="center">
+        <div className=' card text-center col-xs-1 p-5' align="center">
             <NewPost/>
         </div>
 
