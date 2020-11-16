@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import { signup } from '../auth/index';
 
 
 class Signup extends Component {
@@ -30,32 +31,16 @@ class Signup extends Component {
             password,
         };
 
-        this.signup(user).then(data => {
-            if(data.error) this.setState({ error: data.error });
-                else this.setState({
-                    error: "",
-                    name: "",
-                    email: "",
-                    password: "",
-                    open: true
-                });
+    signup(user).then(data => {
+        if(data.error) this.setState({ error: data.error });
+            else this.setState({
+                error: "",
+                name: "",
+                email: "",
+                password: "",
+                open: true
+            });
         });
-
-    };
-
-    signup = user => {
-        return fetch(`${process.env.REACT_APP_API_URL}/signup`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
-        })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
     };
     
     signupForm = (name, email, password) => (

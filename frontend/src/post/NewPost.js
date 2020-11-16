@@ -10,10 +10,10 @@ class NewPost extends Component {
         super();
         this.state = { 
             body: '',
-            // photo: '',
+            photo: '',
             error: '',
             user: {}, 
-            // fileSize: 0,
+            fileSize: 0,
             loading: false,
             redirectToProfile: false
         };
@@ -57,29 +57,27 @@ class NewPost extends Component {
         console.log(this.postData.get("body"));
 
         this.setState({ [name]: value });
-
     };
 
     clickSubmit = event => {
         event.preventDefault();
-        this.setState({ loading: true});
+        this.setState({ loading: true });
 
         if (this.isValid()) {
             const userId = isAuthenticated().user._id;
             const token = isAuthenticated().token;
 
-
             create(userId, token, this.postData)
             .then(data => {
                 console.log(data);
-                if (data.error) this.setState({ error: data.error});
+                if (data.error) this.setState({ error: data.error });
                 else {
                     console.log('New Post: ', data);
                     this.setState({ 
                         loading: false,
                         body: '',
-                        // photo: '',
-                        redirectToProfile: false
+                        photo: '',
+                        redirectToProfile: true
                     })};
             });
         }
@@ -88,15 +86,14 @@ class NewPost extends Component {
     newPostForm = (body) => (
         <form className="">
                 
-            {/* <div className='form-group'>
-                <label className='text-muted'>Photo Post</label>
+            <div className='form-group'>
                 <input
                     onChange= {this.handleChange('photo')}
                     type='file'
                     accept='image/*'
                     className='form-control'
                 />
-            </div> */}
+            </div>
                 
             <div className='form-group'>
                 <div class="text-center">
@@ -109,6 +106,7 @@ class NewPost extends Component {
                     />
                 </div>
             </div>
+            
             <div className="text-center">
                 <button
                     onClick={this.clickSubmit}
@@ -116,14 +114,14 @@ class NewPost extends Component {
                 >
                     Create Post
                 </button>
-        </div>
+            </div>
         </form>
     );
 
     render() {
         const {
             body,
-            // photo,
+            photo,
             user, 
             error,
             loading,
@@ -135,7 +133,7 @@ class NewPost extends Component {
         }
 
         return (
-            <div className='container '>
+            <div className='container'>
                 <div
                     className='alert alert-danger'
                     style={{display: error ? "" : "none"}}
@@ -144,7 +142,7 @@ class NewPost extends Component {
                 </div>
 
                 {loading ? (
-                    <div className='jumbotron text-center'>
+                    <div className='jumpotron text-center'>
                         <h2>Loading...</h2>
                     </div>
                 ) : (
