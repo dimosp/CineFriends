@@ -97,8 +97,8 @@ class NewPost extends Component {
                     className='form-control'
                 />
             </div> */}
-                
-            <div className='form-group'>
+            
+            <div className='form-group col-lg-5'>
                 <div class="text-center">
                     <textarea
                         onChange={this.handleChange('body')}

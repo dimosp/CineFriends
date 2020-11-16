@@ -97,6 +97,9 @@ class Signup extends Component {
                 Sign Up
             </button>
 
+            <br></br>
+            Already have an account? {" "} <Link to="/signin">Sign In</Link>
+
     </form>
     )
     render() {

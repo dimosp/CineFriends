@@ -4,7 +4,7 @@ import './Posts.css';
 
 function SinglePost(props) {
     return(
-        <div class="card gedf-card m-5 ">
+        <div class="card gedf-card border-secondary m-5 ">
             <div class="card-header ">
                 <div class="d-flex justify-content-between align-items-center ">
                 <div class="d-flex justify-content-between align-items-center">
