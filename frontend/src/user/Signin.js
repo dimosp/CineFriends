@@ -73,41 +73,42 @@ class Signin extends Component {
 
     signinForm = (email, password) => (
         <form>
+            <body class="text-center">
+                <div className="form-group">
+                    <div class="col-sm-3 my-1 mx-auto">
+                        <label className="text-muted">Email</label>
+                        <input
+                            // Constantly checks to see if email field contains @ to verify that user gives us his email
+                            onChange={this.handleChange("email")} //  onChange detects when the value of an input element changes
+                            type="email"
+                            className="form-control"
+                            value={email}
+                        />
+                    </div>
+                </div>
             
-            <div className="form-group">
-                <div class="col-sm-3 my-1">
-                    <label className="text-muted">Email</label>
-                    <input
-                        // Constantly checks to see if email field contains @ to verify that user gives us his email
-                        onChange={this.handleChange("email")} //  onChange detects when the value of an input element changes
-                        type="email"
-                        className="form-control"
-                        value={email}
-                    />
+                <div className="form-group">
+                    <div class="col-sm-3 my-1 mx-auto">
+                        <label className="text-muted">Password</label>
+                        <input
+                            // Constantly checks to verify if user gives us password
+                            onChange={this.handleChange("password")} 
+                            type="password"
+                            className="form-control"
+                            value={password}
+                        />
+                    </div>
                 </div>
-            </div>
-        
-            <div className="form-group">
-                <div class="col-sm-3 my-1">
-                    <label className="text-muted">Password</label>
-                    <input
-                        // Constantly checks to verify if user gives us password
-                        onChange={this.handleChange("password")} 
-                        type="password"
-                        className="form-control"
-                        value={password}
-                    />
-                </div>
-            </div>
 
-            <button
-                onClick={this.clickSubmit}
-                className="btn btn-raised btn-dark"
-            >
-                Sign In
-            </button>
-            <br></br>
-            Don't have an account? {" "} <Link to="/signup">Sign Up</Link>
+                <button
+                    onClick={this.clickSubmit}
+                    className="btn btn-raised btn-dark"
+                >
+                    Sign In
+                </button>
+                <br></br>
+                Don't have an account? {" "} <Link to="/signup">Sign Up</Link>
+            </body>
         </form>
     );
 
@@ -119,28 +120,30 @@ class Signin extends Component {
         }
 
         return (
-            <div className="container">
-                <h2 className="mt-5 mb-5">Sign In</h2>
+            <body class="text-center">
+                <div className="container">
+                    <h2 className="mt-5 mb-5">Sign In</h2>
 
 
-                <div
-                    className="alert alert-danger"
-                    style={{ display: error ? "" : "none" }} // Displays error message in case user gives wrong credentials
-                >
-                    {error}
+                    <div
+                        className="alert alert-danger"
+                        style={{ display: error ? "" : "none" }} // Displays error message in case user gives wrong credentials
+                    >
+                        {error}
+                    </div>
+
+                    {loading ? (
+                        <div className="jumbotron text-center">
+                            <h2>Loading...</h2>
+                    </div>
+                    ) : (
+                        ""
+                    )}
+
+                    {this.signinForm(email, password)}
+                    
                 </div>
-
-                {loading ? (
-                    <div className="jumbotron text-center">
-                        <h2>Loading...</h2>
-                </div>
-                 ) : (
-                     ""
-                 )}
-
-                {this.signinForm(email, password)}
-                
-            </div>
+            </body>
         );
     }
 }

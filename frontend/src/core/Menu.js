@@ -22,7 +22,7 @@ function Menu({ history }) {
     };
 
     React.useEffect(() => {
-        const urlString = "http://localhost:8080/api/users"
+        const urlString = `${process.env.REACT_APP_API_URL}/users`
         $.ajax({
             url: urlString,
 
@@ -44,8 +44,10 @@ function Menu({ history }) {
     }, [searchTerm]);
 
     if (!isAuthenticated()) {
+
         return (
-            <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom">
+            <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top">
+                
                 <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
@@ -53,6 +55,9 @@ function Menu({ history }) {
                         </li>
                     </ul>
                 </div>
+
+                <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>
+                
             </nav>
         );
 
@@ -61,8 +66,8 @@ function Menu({ history }) {
     else if (isAuthenticated()){
         return (
 
-            <nav className="navbar navbar-expand-md navbar-dark my-primary">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav, #sign-out" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <nav className="navbar navbar-expand-md navbar-dark my-primary sticky-top ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav, #sign-out" aria-controls="main-nav sign-out" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -71,11 +76,11 @@ function Menu({ history }) {
                         <li className="nav-item active">
                             <Link className="nav-link" style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} to='/home'>Home</Link>
                         </li>
-
+                        {/*
                         <li className='nav-item'>
                             <Link className='nav-link' style={isActive(history, '/post/create'), { cursor: "pointer", color: '#fff' }} to={`/post/create`}>Create Post</Link>
                         </li>
-
+                        */}
                         <li className='nav-item'>
                             <a className='nav-link' style={isActive(history), { cursor: "pointer", color: '#fff' }}>{isAuthenticated().user.name}</a>
                         </li>
@@ -116,6 +121,7 @@ function Menu({ history }) {
                 </div>
 
             </nav>
+            
         );
     }
    
