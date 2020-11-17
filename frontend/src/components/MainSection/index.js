@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {MainContainer, MainBg, VideoBg, MainContent, MainH1, MainP, MainBtnWrapper, ArrowForward, ArrowRight } from './MainElements';
 import {Button} from '../ButtonElement';
-import Video from '../../videos/video1.mp4';
+import Video from '../../videos/video2.mp4';
 
 const MainSection = () => {
     const [hover, setHover] = useState(false);

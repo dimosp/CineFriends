@@ -1,6 +1,6 @@
-// This is where we gonna store our styled-component
 import styled from 'styled-components';
 import { Link as LinkR } from 'react-router-dom';
+import { FcFilmReel } from 'react-icons/fc'
 
 
 export const Nav = styled.nav`
@@ -27,21 +27,24 @@ export const NavbarContainer = styled.div`
     z-index: 1;
     width: 100%;
     padding: 0 24px;
-    max-width: 1100px;`
+    max-width: 1200px;`
     ;
 
 
 export const NavLogo = styled(LinkR)`
-    color: #fff;
+    color: #6495ED;
     justify-self: flex-start;
     cursor: pointer;
-    font-size: 1.5rem;
+    text-decoration: none;
+    font-size: 2rem;
     display: flex;
     align-items: center;
-    margin-left: 24px;
-    font-weight: bold;
-    text-decoration: none;
 `;
+
+export const NavIcon = styled(FcFilmReel)`
+    margin-right: 0.5rem;
+    font-size: 4rem;
+`
 
 export const MobileIcon = styled.div`
     display: none;
@@ -63,7 +66,7 @@ export const NavMenu = styled.ul`
     align-items: center;
     list-style: none;
     text-align: center;
-    margin-right: -22px;
+    margin-right: 100px;
 
 
     @media screen and (max-width: 768px) {
@@ -81,12 +84,12 @@ export const NavLinks = styled(LinkR) `
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding: 0 1rem;
+    padding: 0 2rem;
     height: 100%;
     cursor: pointer;
 
     &:active {
-        border-bottom: 3px solid #01bf71;
+        border-bottom: 3px solid #6495ED;
     }
 `;
 
@@ -101,7 +104,7 @@ export const NavBtn = styled.nav`
 
 export const NavBtnLink = styled(LinkR)`
     border-radius: 50px;
-    background: #01bf71;
+    background: #6495ed;
     white-space: nowrap;
     padding: 10px 22px;
     color: #010606;
