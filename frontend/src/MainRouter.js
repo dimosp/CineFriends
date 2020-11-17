@@ -1,5 +1,6 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
+import LandingPage from './pages/index';
 import Home from './core/Home';
 import Menu from './core/Menu';
 import Signup from './user/Signup';
@@ -12,9 +13,9 @@ import NewPost from './post/NewPost';
 
 const MainRouter = () => (
     <div>
-        <Menu />
+     <Menu />
         <Switch>
-            <Route exact path='/' component={Signin} />
+            <Route exact path='/' component={LandingPage} /> 
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
             <PrivateRoute exact path='/home' component={Home} />
