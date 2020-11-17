@@ -13,7 +13,7 @@ function SinglePost(props) {
                     </div>
                     <div class="ml-2">
                             <div class="h5 m-0 text-left"><Link to={`${props.posterId}`}>{props.posterName}</Link></div>
-                            <div class="text-muted h7 mb-2 font-weight-normal"> <i class="fa fa-clock-o"></i> {new Date(props.created).toDateString()} </div>
+                            <div class="text-muted h7 mb-2 font-weight-normal"> <i class="fa fa-clock-o"></i> {new Date(props.created).toDateString() + ", " + new Date(props.created).toLocaleTimeString()} </div>
                     </div>
                 </div>
                 <div>
