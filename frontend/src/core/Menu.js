@@ -46,7 +46,7 @@ function Menu({ history }) {
     if (!isAuthenticated()) {
 
         return (
-            <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom sticky-top">
+            <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top">
                 
                 <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
@@ -55,6 +55,8 @@ function Menu({ history }) {
                         </li>
                     </ul>
                 </div>
+
+                <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>
                 
             </nav>
         );
@@ -119,6 +121,7 @@ function Menu({ history }) {
                 </div>
 
             </nav>
+            
         );
     }
    

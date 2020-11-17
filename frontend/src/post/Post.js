@@ -4,7 +4,7 @@ import './Posts.css';
 
 function SinglePost(props) {
     return(
-        <div class="card gedf-card m-5 ">
+        <div class="card gedf-card border-secondary m-5 ">
             <div class="card-header ">
                 <div class="d-flex justify-content-between align-items-center ">
                 <div class="d-flex justify-content-between align-items-center">
@@ -12,7 +12,8 @@ function SinglePost(props) {
                         <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
                     </div>
                     <div class="ml-2">
-                        <div class="h5 m-0"><Link to={`${props.posterId}`}>{props.posterName}</Link></div>
+                            <div class="h5 m-0 text-left"><Link to={`${props.posterId}`}>{props.posterName}</Link></div>
+                            <div class="text-muted h7 mb-2 font-weight-normal"> <i class="fa fa-clock-o"></i> {new Date(props.created).toDateString()} </div>
                     </div>
                 </div>
                 <div>
@@ -34,10 +35,9 @@ function SinglePost(props) {
         <div class="card-body">
 
 
-            <p class="card-text">
+            <p class="card-text text-left">
                 {props.body.substring(0, 100)}
             </p>
-            <div class="text-muted h7 mb-2 font-weight-normal"> <i class="fa fa-clock-o"></i> {new Date(props.created).toDateString()} </div>
         </div>
         <div class="card-footer">
             <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
