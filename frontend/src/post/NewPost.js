@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {isAuthenticated} from '../auth';
 import {create} from './apiPost';
-import {Redirect} from 'react-router-dom';    
-import Home from '../core/Home';
+import {Redirect} from 'react-router-dom';
+// import DefaultProfile from '../images/avatar.jpg';
+    
     
 class NewPost extends Component {
     constructor() {
@@ -14,7 +15,7 @@ class NewPost extends Component {
             user: {}, 
             fileSize: 0,
             loading: false,
-            redirectToHome: false
+            redirectToProfile: false
         };
     }
 
@@ -25,15 +26,15 @@ class NewPost extends Component {
 
     isValid = () => {
         const {body, fileSize} = this.state;
-        // if (fileSize>100000) {
-        //     this.setState({
-        //         error: 'File size should be less than 100kb',
-        //         loading: false
-        //     });
-        //     return false;
-        // }
+        if (fileSize>100000) {
+            this.setState({
+                error: 'File size should be less than 100kb',
+                loading: false
+            });
+            return false;
+        }
         if (body.length === 0) {
-            this.setState({error: 'Write something to post', loading: false});
+            this.setState({error: 'All fields are required', loading: false});
             return false;
         }
         return true;
@@ -76,7 +77,7 @@ class NewPost extends Component {
                         loading: false,
                         body: '',
                         photo: '',
-                        redirectToHome: true
+                        redirectToProfile: false
                     })};
             });
         }
@@ -93,13 +94,13 @@ class NewPost extends Component {
                     className='form-control'
                 />
             </div> */}
-                
-            <div className='form-group'>
+            
+            <div className='form-group mx-auto col-lg-5'>
                 <div class="text-center">
                     <textarea
                         onChange={this.handleChange('body')}
                         type='text'
-                        placeholder="Write something here..."
+                        placeholder="What's on your mind?"
                         className='form-control'
                         value={body}
                     />
@@ -124,11 +125,11 @@ class NewPost extends Component {
             user, 
             error,
             loading,
-            redirectToHome
+            redirectToProfile
         } = this.state;
 
-        if (redirectToHome) {
-            return <Home />;
+        if (redirectToProfile) {
+            return <Redirect to="/home" />;
         }
 
         return (
