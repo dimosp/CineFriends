@@ -149,6 +149,15 @@ function Menu({ history }) {
                             </Link>
                         </li>
                         */}
+                        <li className='nav-item'>
+                            <Link 
+                                className='nav-link' 
+                                style={isActive(history, `/}`)} 
+                                to={`/findpeople`}
+                            >
+                                Find People
+                            </Link>
+                        </li>
 
                         <li className='nav-item'>
                             <Link 
