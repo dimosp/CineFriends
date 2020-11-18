@@ -42,7 +42,7 @@ function Menu({ history }) {
     }, [searchTerm]);
 
     
-    if (!isAuthenticated() && history.location.pathname === "/"){
+    if (!isAuthenticated() && history.location.pathname == "/"){
         return (            
                 <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>        
         );
@@ -133,7 +133,27 @@ function Menu({ history }) {
                                     Discover
                             </Link>
                         </li>
-                        
+
+                        {/*
+                        <li className='nav-item'>
+                            <Link 
+                                className='nav-link' 
+                                style={isActive(history, '/post/create')} 
+                                to={`/post/create`}>
+                                    Create Post
+                            </Link>
+                        </li>
+                        */}
+
+                        <li className='nav-item'>
+                            <Link 
+                                className='nav-link' 
+                                style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
+                                to={`/user/${isAuthenticated().user._id}`}
+                            >
+                                {`My Profile`}
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
@@ -152,7 +172,7 @@ function Menu({ history }) {
                             aria-label="user results" 
                             class="list-group"
                         >
-                            {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() !== "").map(name => (
+                            {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(name => (
                                     <li class="list-group-item" >
                                         <Link 
                                             className="nav-link" 
@@ -168,17 +188,6 @@ function Menu({ history }) {
 
                 <div class="navbar-collapse w-100 order-3 dual-collapse2" id="sign-out">
                     <ul class="navbar-nav ml-auto">
-
-                        <li className='nav-item'>
-                            <Link 
-                                className='nav-link' 
-                                style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
-                                to={`/user/${isAuthenticated().user._id}`}
-                            >
-                                {`${isAuthenticated().user.name}`}
-                            </Link>
-                        </li>
-
                         <li className='nav-item d-flex flex-row-reverse' >
                             <span 
                                 className='nav-link' 
