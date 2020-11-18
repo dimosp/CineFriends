@@ -13,7 +13,6 @@ const divStyle = {
     marginTop: '15px'
 };
 
-
 const containerStyle = {
     maxWidth: '1280px',
     margin: '0 auto',
@@ -27,7 +26,6 @@ const InfiniteScroll = () => {
     // add loader reference 
     const loader = useRef(null);
 
-
     //New Stuff
 
     useEffect(() => {
@@ -39,9 +37,7 @@ const InfiniteScroll = () => {
                     setPostList(data.slice(0, 5))
                 }
             });
-
     },[])
-
 
     useEffect(() => {
         var options = {
@@ -55,9 +51,7 @@ const InfiniteScroll = () => {
         if (loader.current) {
             observer.observe(loader.current)
         }
-
     }, []);
-
 
     useEffect(() => {
         // here we simulate adding new posts to List
@@ -70,12 +64,8 @@ const InfiniteScroll = () => {
                     if (postCount + increment > data.length) {
                         increment = data.length;
                     }
-
-
                     setPostList(postList.concat(data.slice(postCount, postCount + increment)))
                     setPostCount(postCount + increment)
-
-
                 }
             });
     }, [page])
@@ -88,37 +78,23 @@ const InfiniteScroll = () => {
             setPage((page) => page + 1)
         }
     }
-    /*
-     *                     <div className='card col-md-4 mb-5' key={i}>
-                        <div className='card-body'>
-                            <p className='card-text'>{post.body.substring(0, 100)}</p>
-                            <br />
-                            <p className='font-italic mark'>
-                                Posted by <Link to={`${posterId}`}>{posterName}</Link>
-                                {" "}
-                                on {new Date(post.created).toDateString()}
-                            </p>
-
-                            <Link
-                                to={`/posts/${post._id}`}
-                                className='btn btn-raised btn-dark btn-sm'
-                            >
-                                Read More
-                            </Link>
-                        </div>
-                    </div>
-*/
 
     return (<div className="container" style={containerStyle}>
         <div className="post-list col-xs-1" align="center">
-
  
             {postList.map((post, i) => {
-                const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
+                const posterId = post.postedBy ? `${post._id}` : "";
+                console.log("posterId", posterId)
+
+                const postedById = post.postedBy ? `${post.postedBy._id}` : ""; 
+                console.log("postedById", postedById)
+
+
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown";
+                console.log("posterName", posterName)
 
                 return (
-                    <Post posterId={posterId} posterName={posterName} created={post.created} body={post.body} />
+                    <Post posterId={posterId} posterName={posterName} postedById={postedById} created={post.created} body={post.body} />
                 )
             })}
             

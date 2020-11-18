@@ -10,20 +10,20 @@ import Users from './user/Users';
 import EditProfile from './user/EditProfile';
 import PrivateRoute from './auth/PrivateRoute';
 import NewPost from './post/NewPost';
+import EditPost from './post/EditPost';
 
 const MainRouter = () => (
     <div>
      <Menu />
         <Switch>
-            <Route exact path='/' component={LandingPage} /> 
+            <Route exact path='/' component={LandingPage} />
+            <Route exact path='/home' component={Home} /> 
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
-            <PrivateRoute exact path='/home' component={Home} />
             <PrivateRoute exact path='/users' component={Users} />
-
+            <PrivateRoute exact path='/post/edit/:postId' component={EditPost} />
             <PrivateRoute exact path='/user/edit/:userId' component={EditProfile} />
             <PrivateRoute exact path='/user/:userId' component={Profile} />
-            
             <PrivateRoute exact path='/post/create' component={NewPost} /> 
         </Switch>
     </div>
