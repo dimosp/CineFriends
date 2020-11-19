@@ -54,7 +54,7 @@ class SinglePost extends Component {
                             <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
                         </div>
                         <div class="ml-2">
-                                <div class="h5 m-0 text-left"><Link to={`/user/${this.props.posterId}`}>{this.props.posterName}</Link></div>
+                                <div class="h5 m-0 text-left"><Link to={`/user/${this.props.postedById}`}>{this.props.posterName}</Link></div>
                                 <div class="text-muted h7 mb-2 font-weight-normal"> <i class="fa fa-clock-o"></i> {new Date(this.props.created).toDateString() + ", " + new Date(this.props.created).toLocaleTimeString()} </div>
                         </div>
                     </div>
