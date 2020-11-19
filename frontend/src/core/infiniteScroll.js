@@ -14,7 +14,7 @@ const divStyle = {
 };
 
 const containerStyle = {
-    maxWidth: '1280px',
+    maxWidth: '800px',
     margin: '0 auto',
 }
 const InfiniteScroll = () => {
