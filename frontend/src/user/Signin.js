@@ -97,7 +97,6 @@ class Signin extends Component {
                 <div className="container">
                     <h2 className="mt-5 mb-5">Sign In</h2>
 
-
                     <div
                         className="alert alert-danger"
                         style={{ display: error ? "" : "none" }} // Displays error message in case user gives wrong credentials

@@ -10,3 +10,8 @@
     color: #ffffff
 }
 
+.delete-dropdown{
+    color: rgb(255, 255, 255);
+    background-color: rgb(238, 85, 85);
+    border-color: rgb(238, 85, 85);
+}

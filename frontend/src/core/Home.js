@@ -1,8 +1,8 @@
 import React from 'react';
-import Posts from '../post/Posts';
 import { isAuthenticated } from '../auth/index';
 import InfiniteScroll from "./infiniteScroll.js";
 import NewPost from '../post/NewPost';
+
 
 const Home = () => (
     <div>
