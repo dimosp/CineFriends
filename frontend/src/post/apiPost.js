@@ -96,3 +96,13 @@ export const unlike = (userId, token, postId) => {
         })
         .catch(err => console.log(err));
 };
+
+export const fetchFollowerPosts = (token, id) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/posts/by/${id}`, {
+        method: 'GET',
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+        }
+    })
+};
