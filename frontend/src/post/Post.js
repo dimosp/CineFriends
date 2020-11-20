@@ -174,12 +174,12 @@ class SinglePost extends Component {
                 </p>
             </div>
 
-            {/*
+            
             <div class="card-footer d-flex">
                 <a href="#" class="card-link mr-auto p-2"><i class="fa fa-gittip"></i> Like</a>
                 <a href="#" class="card-link p-2"><i class="fa fa-comment"></i> Comment</a>
             </div>
-            */}
+            
             {/* ** Commented it because it breaks in length */}
             {/* <div className="card-footer d-flex">
                 <a 
@@ -217,7 +217,7 @@ class SinglePost extends Component {
                                     height="1em" 
                                     viewBox="0 0 16 16" 
                                     class="bi bi-heart-fill" 
-                                    fill="currentColor" 
+                                    fill="#e31b23" 
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path 
                                         fill-rule="evenodd" 
