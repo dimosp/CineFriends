@@ -172,16 +172,17 @@ function Menu({ history }) {
                             aria-label="user results" 
                             class="list-group"
                         >
-                            {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(name => (
-                                    <li class="list-group-item" >
-                                        <Link 
-                                            className="nav-link" 
-                                            style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }} 
-                                            to='/'>
-                                                {name}
-                                        </Link>  
-                                    </li>
-                                ))}
+                            {searchResults.map(user => user).filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(user => (
+                                <li class="list-group-item" >
+                                    <Link
+                                        className="nav-link"
+                                        style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }}
+                                        to={'/user/' + user._id}>
+                                        {user.name}
+
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </form>
                 </div>
