@@ -3,6 +3,8 @@ import {Link, withRouter} from 'react-router-dom';
 import {signout, isAuthenticated} from '../auth/index';
 import $ from 'jquery';
 import './Custom.css';
+import { HomeIcon } from '../images/iconIndex.js';
+
 
 const isActive = (history, path) => {
     if(history.location.pathname === path) return {color: '#778899'}
@@ -26,9 +28,6 @@ function Menu({ history }) {
             success: (searchResults) => {
                 console.log("Success data fetch")
                 const userResults = searchResults 
-                
-                // Changed the "const userResults = searchResults.users" because it returned undifined.
-                // const userResults = searchResults.users
 
                 console.log(userResults[0])
                 setSearchResults(userResults);
@@ -42,7 +41,7 @@ function Menu({ history }) {
     }, [searchTerm]);
 
     
-    if (!isAuthenticated() && history.location.pathname == "/"){
+    if (!isAuthenticated() && history.location.pathname === "/"){
         return (            
                 <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>        
         );
@@ -52,26 +51,12 @@ function Menu({ history }) {
             <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top">              
                 <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
+                        <li className="nav-item active my-auto">
                             <Link 
                                 className="nav-link" 
                                 style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} 
                                 to='/'>
-                                <svg 
-                                    width="1.5em" 
-                                    height="1.5em" 
-                                    viewBox="0 0 16 16" 
-                                    class="bi bi-house-fill align-top" 
-                                    fill="currentColor" 
-                                    style={{color: 'white'}}
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path 
-                                        fill-rule="evenodd" 
-                                        d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                    <path 
-                                        fill-rule="evenodd" 
-                                        d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>   
-                                </svg>
+                                    {HomeIcon()}
                             </Link>
                         </li>
                     </ul>
@@ -102,26 +87,12 @@ function Menu({ history }) {
                     align="center" 
                     id="main-nav">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
+                        <li className="nav-item active my-auto">
                             <Link 
                                 className="nav-link" 
                                 style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} 
                                 to='/home'>
-                                <svg 
-                                    width="1.5em" 
-                                    height="1.5em" 
-                                    viewBox="0 0 16 16" 
-                                    class="bi bi-house-fill align-top" 
-                                    fill="currentColor" 
-                                    style={{color: 'white'}}
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path 
-                                        fill-rule="evenodd" 
-                                        d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                    <path 
-                                        fill-rule="evenodd" 
-                                        d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>   
-                                </svg>
+                                    {HomeIcon()}
                             </Link>
                         </li>
 
@@ -134,26 +105,6 @@ function Menu({ history }) {
                             </Link>
                         </li>
 
-                        {/*
-                        <li className='nav-item'>
-                            <Link 
-                                className='nav-link' 
-                                style={isActive(history, '/post/create')} 
-                                to={`/post/create`}>
-                                    Create Post
-                            </Link>
-                        </li>
-                        */}
-
-                        <li className='nav-item'>
-                            <Link 
-                                className='nav-link' 
-                                style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
-                                to={`/user/${isAuthenticated().user._id}`}
-                            >
-                                {`My Profile`}
-                            </Link>
-                        </li>
                     </ul>
                 </div>
 
@@ -189,6 +140,27 @@ function Menu({ history }) {
 
                 <div class="navbar-collapse w-100 order-3 dual-collapse2" id="sign-out">
                     <ul class="navbar-nav ml-auto">
+                        <li className='nav-item my-auto mx-auto '> 
+                            <Link to={`/user/${isAuthenticated().user._id}`}>
+                                <img 
+                                    className="rounded-circle mr-2 " 
+                                    width="35" 
+                                    src={`${process.env.REACT_APP_API_URL}/users/photo/${isAuthenticated().user._id}`} 
+                                    alt="" 
+                                    style={{'box-shadow': '3px 3px 3px 3px #212122'}}
+                                />
+                            </Link>
+                        </li>
+                        <li className='nav-item mx-auto'>
+                            <Link
+                                className='nav-link' 
+                                style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
+                                to={`/user/${isAuthenticated().user._id}`}
+                            >
+                                {`${isAuthenticated().user.name}`}
+                            </Link>
+                        </li>
+
                         <li className='nav-item d-flex flex-row-reverse' >
                             <span 
                                 className='nav-link' 

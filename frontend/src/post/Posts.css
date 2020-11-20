@@ -10,8 +10,14 @@
     color: #ffffff
 }
 
-.delete-dropdown{
-    color: rgb(255, 255, 255);
-    background-color: rgb(238, 85, 85);
+.delete-dropdown:hover {
+    color: rgb(124, 119, 119);
+    background-color: rgb(238, 85, 85, 0.3);
     border-color: rgb(238, 85, 85);
+}
+
+.edit-dropdown:hover {
+    color: rgb(124, 119, 119);
+    background-color: rgba(18, 128, 245, 0.3);
+    border-color: rgb(141, 167, 201);
 }
