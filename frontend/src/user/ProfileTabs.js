@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import DefaultProfile from "../images/avatar.png";
+import DefaultProfile from "../images/avatar.jpg";
 
 class ProfileTabs extends Component {
     render() {
@@ -91,7 +91,6 @@ class ProfileTabs extends Component {
                                             <p className="lead">{post.title}</p>
                                         </div>
                                     </Link>
-                                    
                                 </div>
                             </div>
                         ))}

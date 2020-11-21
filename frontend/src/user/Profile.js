@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { isAuthenticated } from '../auth';
-import { Redirect, Link } from 'react-router-dom';
-import { read } from './apiUser';
-import DefaultProfile from '../images/avatar.png';
-import DeleteUser from './DeleteUser';
+import React, { Component } from "react";
+import { isAuthenticated } from "../auth";
+import { Redirect, Link } from "react-router-dom";
+import { read } from "./apiUser";
+import DefaultProfile from "../images/avatar.jpg";
+import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
-import ProfileTabs from './ProfileTabs';
+import ProfileTabs from "./ProfileTabs";
+import { listByUser } from "../post/apiPost";
 
 class Profile extends Component {
     constructor() {
@@ -39,8 +40,8 @@ class Profile extends Component {
             } else {
                 this.setState({user: data, following: !this.state.following})
             }
-        })
-    }
+        });
+    };
 
     init = (userId) => {
         const token = isAuthenticated().token;
@@ -52,8 +53,18 @@ class Profile extends Component {
                 let following = this.checkFollow(data)
                 this.setState({ user: data, following });
             }
-        })
-    }
+        });
+    };
+    loadPosts = userId => {
+        const token = isAuthenticated().token;
+        listByUser(userId, token).then(data => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            this.setState({ posts: data });
+          }
+        });
+    };
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
@@ -106,9 +117,9 @@ class Profile extends Component {
                                     <DeleteUser userId={user._id} />
                                 </div>
                             )  : (
-                            <FollowProfileButton
-                             following={this.state.following}
-                             onButtonClick={this.clickFollowButton}
+                                <FollowProfileButton
+                                following={this.state.following}
+                                onButtonClick={this.clickFollowButton}
                               />
                             ) }  
                             
@@ -124,10 +135,11 @@ class Profile extends Component {
                             {user.about}
                         </p>
                     <hr/>
-                    <ProfileTabs 
-                            followers={user.followers} 
-                            following={user.following}
-                            />
+                    <ProfileTabs
+              followers={user.followers}
+              following={user.following}
+              posts={posts}
+            />
                     </div>
                 </div>
             </div>
