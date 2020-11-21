@@ -27,6 +27,8 @@ router.delete("/users/:userId", requireSignin, hasAuthorization, deleteUser);
 
 // photo
 router.get("/users/photo/:userId", userPhoto);
+ 
+
 
 // who to follow
 router.get("/users/findpeople/:userId", requireSignin, findPeople);

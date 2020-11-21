@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import DefaultProfile from "../images/avatar.jpg";
+import DefaultProfile from "../images/avatar.png";
 
 class ProfileTabs extends Component {
     render() {
