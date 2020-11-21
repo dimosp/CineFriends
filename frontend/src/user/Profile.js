@@ -88,6 +88,7 @@ class Profile extends Component {
                     </div>
                     <div className='col-md-6'>
                         <div className='lead mt-2'>
+                        <h4>Profile Information</h4>
                             <p>{user.name}</p>
                             <p>{user.email}</p>
                             <p>
@@ -117,6 +118,7 @@ class Profile extends Component {
                 </div>
                 <div className='row'>
                     <div className='col md-12 mt-5 mb-5'>
+                    <h4>About me...</h4>
                     <hr/>
                         <p className='lead'>
                             {user.about}

@@ -6,9 +6,9 @@ const _ = require('lodash');
 exports.postById = (req, res, next, id) => {
     Post.findById(id)
         .populate('postedBy', '_id name')
-        .populate("comment", "text created")
+        .populate("comments", "text created")
         .populate("comments.postedBy", "_id name")
-        .select('_id body created ')
+        .select('_id body created likes comments')
         .exec((err, post) => {
             if (err || !post) {
                 return res.status(400).json({
@@ -23,9 +23,9 @@ exports.postById = (req, res, next, id) => {
 exports.getPosts = (req, res) => {
     const posts = Post.find()
         .populate("postedBy", "_id name")
-        .populate("comment", "text created")
+        .populate("comments", "text created")
         .populate("comments.postedBy", "_id name")
-        .select("_id body created likes ")
+        .select("_id body created likes")
         .sort({ created: -1 })
         .then(posts => {
             res.json(posts);

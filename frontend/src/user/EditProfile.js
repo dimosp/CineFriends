@@ -165,7 +165,7 @@ class EditProfile extends Component {
 
             <div className="form-group">
                 <div class="col-sm-3 my-1">
-                    <label className="text-muted">Password</label>
+                    <label className="text-muted">New Password</label>
                     <input 
                         onChange={this.handleChange("password")} 
                         type="password" 

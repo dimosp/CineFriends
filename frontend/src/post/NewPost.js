@@ -77,7 +77,7 @@ class NewPost extends Component {
                         loading: false,
                         body: '',
                         photo: '',
-                        redirectToProfile: true
+                        redirectToProfile: false
                     })};
             });
         }
@@ -86,21 +86,21 @@ class NewPost extends Component {
     newPostForm = (body) => (
         <form className="">
                 
-            <div className='form-group'>
+            {/* <div className='form-group'>
                 <input
                     onChange= {this.handleChange('photo')}
                     type='file'
                     accept='image/*'
                     className='form-control'
                 />
-            </div>
-                
-            <div className='form-group'>
+            </div> */}
+            
+            <div className='form-group mx-auto col-lg-5'>
                 <div class="text-center">
                     <textarea
                         onChange={this.handleChange('body')}
                         type='text'
-                        placeholder="Write something here..."
+                        placeholder="What's on your mind?"
                         className='form-control'
                         value={body}
                     />
@@ -129,7 +129,7 @@ class NewPost extends Component {
         } = this.state;
 
         if (redirectToProfile) {
-            return <Redirect to={`/user/${user._id}`} />;
+            return <Redirect to="/home" />;
         }
 
         return (

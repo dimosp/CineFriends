@@ -39,14 +39,6 @@ export const remove = (userId, token) => {
 }
 
 export const update = (userId, token, userdata) => {
-    console.log("USER DATA:" , 
-    
-    JSON.stringify({
-        name: userdata.get('name'),
-        email: userdata.get('email'),
-        password: userdata.get('password')
-    })
-    )
 
     return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
         method: 'PUT',
@@ -64,8 +56,6 @@ export const update = (userId, token, userdata) => {
 };
 
 export const updateUser = (user, next) => {
-    console.log('έχει id ο χρήστης;;', user)
-    console.log('αν τον αναλύσω', JSON.stringify(user))
 
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('jwt')) {

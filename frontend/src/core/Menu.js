@@ -5,7 +5,7 @@ import $ from 'jquery';
 import './Custom.css';
 
 const isActive = (history, path) => {
-    if(history.location.pathname === path) return {color: '#000000'}
+    if(history.location.pathname === path) return {color: '#778899'}
     else return {color: '#ffffff'}
 }
 
@@ -27,7 +27,7 @@ function Menu({ history }) {
                 console.log("Success data fetch")
                 const userResults = searchResults 
                 
-                //Άλλαξα το const userResults = searchResults.users γιατί μου επέστρεφε undifined.
+                // Changed the "const userResults = searchResults.users" because it returned undifined.
                 // const userResults = searchResults.users
 
                 console.log(userResults[0])
@@ -41,9 +41,15 @@ function Menu({ history }) {
 
     }, [searchTerm]);
 
-    if (!isAuthenticated()) {
+    
+    if (!isAuthenticated() && history.location.pathname == "/"){
+        return (            
+                <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>        
+        );
+    }
+    else if (!isAuthenticated()) {
         return (
-            <nav className="navbar navbar-expand navbar-dark my-primary navbarCustom sticky-top">
+            <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top">              
                 <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
@@ -68,22 +74,11 @@ function Menu({ history }) {
                                 </svg>
                             </Link>
                         </li>
-                        <li>                            
-                            <Link 
-                                className="nav-link" 
-                                style={isActive(history, '/signin'), { cursor: "pointer", color: '#fff' }} 
-                                to='/signin'>
-                                <img 
-                                    style={{
-                                        width:"1.5em", 
-                                        height:"1.5em" }}
-                                    viewBox="0 0 16 16"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABSElEQVRIid2VvU5CQRCFzxKhk0QTOwvttDaa2PgGCuJ9KH9i8C3sDPQ+gj6AEjUaDbYCncVnwb1kInd/RBo91WZ25ny7s7tZ6V8LqAEZcAncm/hdHjsCqrOaN4EXjMyc1TNw8BNjB7QpkQdQ6BxwKYALj0EMANCOmWeB4hQAQMtnXgUe5wB4AmpFbsUwMknr0R7GtSbpsAyw7ynoS1pyzk0OMB8vS3r31Ey8LGDbk7wiabMkvpFDyrQzFQFGgb6OgD2Tuwt8BPKHk92aooGkRc+KJGkgqbghV5Lqgdyhc64uSQsm2I8A6pKuA/NWb8XAnsFtYnGKbsoAnTkCulOR/KH1Io8oRQ/2oX2HtOYAaAT3Bpz9wvw42jygApzOYH4CVKIAA2qSdiY9Am0JfhCMv8OmpIakLUmr+dSrxte6I6nrnPtMXvmf0xdru85s/d6CnQAAAABJRU5ErkJggg=="> 
-                                </img>
-                            </Link>
-                        </li>
                     </ul>
                 </div>
+
+                <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>
+                
             </nav>
         );
     }
@@ -111,7 +106,7 @@ function Menu({ history }) {
                             <Link 
                                 className="nav-link" 
                                 style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} 
-                                to='/'>
+                                to='/home'>
                                 <svg 
                                     width="1.5em" 
                                     height="1.5em" 
@@ -135,7 +130,7 @@ function Menu({ history }) {
                                 className='nav-link' 
                                 style={isActive(history, '/users')} 
                                 to='/users'>
-                                    Users
+                                    Discover
                             </Link>
                         </li>
 
@@ -165,7 +160,7 @@ function Menu({ history }) {
                                 style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
                                 to={`/user/${isAuthenticated().user._id}`}
                             >
-                                {`${isAuthenticated().user.name}'s Profile`}
+                                {`My Profile`}
                             </Link>
                         </li>
                     </ul>
@@ -186,16 +181,17 @@ function Menu({ history }) {
                             aria-label="user results" 
                             class="list-group"
                         >
-                            {searchResults.map(user => user.name).filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(name => (
-                                    <li class="list-group-item" >
-                                        <Link 
-                                            className="nav-link" 
-                                            style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }} 
-                                            to='/'>
-                                                {name}
-                                        </Link>  
-                                    </li>
-                                ))}
+                            {searchResults.map(user => user).filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.trim() != "").map(user => (
+                                <li class="list-group-item" >
+                                    <Link
+                                        className="nav-link"
+                                        style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }}
+                                        to={'/user/' + user._id}>
+                                        {user.name}
+
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </form>
                 </div>
@@ -213,8 +209,10 @@ function Menu({ history }) {
                     </ul>
                 </div>
             </nav>
+            
         );
     }
+
 }
 
 export default withRouter(Menu);

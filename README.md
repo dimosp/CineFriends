@@ -39,6 +39,7 @@ If you leave the script file in the same directory as on this repository, then s
 After runnining the script for the first time, which might take a few minutes due to the installations, you can comment out
 lines [42](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L42) and [56](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L56) of [run-app.sh](https://github.com/dimosp/CineFriends/blob/main/run-app.sh), which have the ```npm install``` command.
 
+*Important:* There are 2 .env files (with environment variables) that our project uses, which are not on the repository for security reasons. In order for the project to run properly, you have to create your .env files in the same directories that the .env.example files (examples of how our .env files look like) are present in this repository (in [CineFriends/backend](https://github.com/dimosp/CineFriends/tree/main/backend) and in [CineFriends/frontend](https://github.com/dimosp/CineFriends/tree/main/frontend)).
 
 ## Contributing
 Until November 20, 2020, this project will be solely maintained by the **SKG.CODE Deadpool Team**.
