@@ -3,7 +3,7 @@ import {Link, withRouter} from 'react-router-dom';
 import {signout, isAuthenticated} from '../auth/index';
 import $ from 'jquery';
 import './Custom.css';
-import { HomeIcon } from '../images/iconIndex.js';
+import { HomeIcon, PeopleIcon } from '../images/iconIndex.js';
 
 
 const isActive = (history, path) => {
@@ -86,25 +86,47 @@ function Menu({ history }) {
                     class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" 
                     align="center" 
                     id="main-nav">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active my-auto">
-                            <Link 
-                                className="nav-link" 
-                                style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} 
-                                to='/home'>
-                                    {HomeIcon()}
-                            </Link>
-                        </li>
+                    <ul className="navbar-nav mr-auto ">
+                        <div className='container icon-backround icon-backround-home'> 
+                            <li className="nav-item active my-auto mx-auto">
+                                <Link 
+                                    
+                                    style={isActive(history, '/'), { cursor: "pointer", color: '#fff'}} 
+                                    to='/home'>
+                                        {HomeIcon()}
+                                        
+                                </Link>
+                            </li>
+                            {/* <li className='nav-item mx-auto'>
+                                <Link
+                                    className='nav-link' 
+                                    style={isActive(history, '/'), { cursor: "pointer", color: '#fff' }} 
+                                    to={`/home`}
+                                >
+                                    Home
+                                </Link>
+                            </li> */}
+                        </div>
+ 
 
-                        <li className="nav-item">
-                            <Link 
-                                className='nav-link' 
-                                style={isActive(history, '/users')} 
-                                to='/users'>
+                        <div className='container icon-backround'> 
+                            <li className='nav-item my-auto mx-auto '> 
+                                <Link 
+                                    className="nav-link mr-2"
+                                    to={`/users`}>
+                                    {PeopleIcon()}
+                                </Link>
+                            </li>
+                            <li className='nav-item mx-auto'>
+                                <Link
+                                    className='nav-link' 
+                                    style={isActive(history, '/users')} 
+                                    to={`/users`}
+                                >
                                     Discover
-                            </Link>
-                        </li>
-
+                                </Link>
+                            </li>
+                        </div>
                     </ul>
                 </div>
 
@@ -140,35 +162,55 @@ function Menu({ history }) {
 
                 <div class="navbar-collapse w-100 order-3 dual-collapse2" id="sign-out">
                     <ul class="navbar-nav ml-auto">
-                        <li className='nav-item my-auto mx-auto '> 
-                            <Link to={`/user/${isAuthenticated().user._id}`}>
-                                <img 
-                                    className="rounded-circle mr-2 " 
-                                    width="35" 
-                                    src={`${process.env.REACT_APP_API_URL}/users/photo/${isAuthenticated().user._id}`} 
-                                    alt="" 
-                                    style={{'box-shadow': '3px 3px 3px 3px #212122'}}
-                                />
-                            </Link>
-                        </li>
-                        <li className='nav-item mx-auto'>
-                            <Link
-                                className='nav-link' 
-                                style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
-                                to={`/user/${isAuthenticated().user._id}`}
-                            >
-                                {`${isAuthenticated().user.name}`}
-                            </Link>
-                        </li>
+                        <div className='container icon-backround'> 
+                            <li className='nav-item my-auto mx-auto '> 
+                                <Link to={`/user/${isAuthenticated().user._id}`}>
+                                    <img 
+                                        className="rounded-circle mr-2" 
+                                        width="30" 
+                                        src={`${process.env.REACT_APP_API_URL}/users/photo/${isAuthenticated().user._id}`} 
+                                        alt="" 
+                                        style={{'box-shadow': '3px 3px 3px 3px #212122'}}
+                                    />
+                                </Link>
+                            </li>
+                            <li className='nav-item mx-auto'>
+                                <Link
+                                    className='nav-link' 
+                                    style={isActive(history, `/user/${isAuthenticated().user._id}`)} 
+                                    to={`/user/${isAuthenticated().user._id}`}
+                                >
+                                    {`${isAuthenticated().user.name}`}
+                                </Link>
+                            </li>
+                        </div>
 
-                        <li className='nav-item d-flex flex-row-reverse' >
-                            <span 
-                                className='nav-link' 
-                                style={isActive(history, '/signup'), { cursor: "pointer", color: '#fff' }}
-                                onClick={() => signout(() => history.push('/'))}>
-                                    Sign Out
-                            </span>
-                        </li>
+                        {isAuthenticated().user &&  
+                            <div class="dropdown d-flex flex-row-reverse">
+                                <button class="btn btn-link dropdown-toggle dropdown-arrow" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="gedf-drop1">
+                                    <div class="h6 dropdown-header">Me</div>
+                                        <li className='nav-item item-dropdown '>
+                                            <Link 
+                                                className='nav-link text-dark'
+                                                
+                                                to={`/user/edit/${isAuthenticated().user._id}`} >
+                                                Edit Profile
+                                            </Link>
+                                        </li>
+                                        <li className='nav-item item-dropdown' >
+                                            <a 
+                                                className='nav-link text-dark' 
+                                                style={isActive(history, '/signup'), { cursor: "pointer", color: '#fff' }}
+                                                onClick={() => signout(() => history.push('/'))}>
+                                                Sign Out
+                                            </a>
+                                        </li>
+                                </div>
+                            </div>
+                        }
                     </ul>
                 </div>
             </nav>

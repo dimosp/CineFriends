@@ -214,13 +214,13 @@ class SinglePost extends Component {
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
                                     <div class="h6 dropdown-header">Configuration</div>
                                         <a 
-                                            class="dropdown-item edit-dropdown" 
+                                            class="dropdown-item edit-dropdown text-dark" 
                                             style={{cursor: "pointer"}}
                                             href={`/post/edit/${this.props.posterId}`}>
                                                 Edit
                                         </a>
                                         <a 
-                                            class="dropdown-item delete-dropdown" 
+                                            class="dropdown-item delete-dropdown text-dark" 
                                             style={{cursor: "pointer"}}
                                             onClick={this.deleteConfirmed}>
                                                 Delete
@@ -239,25 +239,25 @@ class SinglePost extends Component {
                 </p>
             </div>
             
-            <div className="card-footer d-flex"> 
+            <div className="card-footer d-flex height"> 
                 <a 
                     href="#" 
-                    className="card-link mr-auto p-2">
+                    className="card-link mr-auto p-2 text-dark">
                         <i className="fa fa-gittip"></i> 
                     {likes} {likeIcon()}
                 </a>
                 <a 
                     href="#" 
-                    className="card-link p-2">
+                    className="card-link p-2 text-dark">
                         <i className="fa fa-comment"></i> 
-                    {comments} {commentIcon()} 
+                    {comments} <em>{`Comments`} </em>
                 </a>
-                <a 
+                {/* <a 
                     href="#" 
                     className="card-link p-2">
                         <i className="fa fa-mail-forward"></i> 
                     0 {sharedIcon()} 
-                </a>
+                </a> */}
             </div>
 
             <div className="card-footer d-flex flex-row justify-content-between">
@@ -269,7 +269,7 @@ class SinglePost extends Component {
                             border: 'none',
                             width: '80%'
                         }}  
-                        className="card-link btn bg-transparent">
+                        className="card-link btn bg-transparent primary-full-color">
                             {likeIcon()}
                             <i className="fa fa-gittip"></i>
                             <span className='ml-2'>
@@ -285,10 +285,10 @@ class SinglePost extends Component {
                             border: 'none',
                             width: '80%'
                         }}  
-                        className="card-link btn bg-transparent">
+                        className="card-link btn bg-transparent primary-border-color">
                             {unlikeIcon()}
                             <i className="fa fa-gittip"></i>
-                            <span className='ml-3'>
+                            <span className='ml-3 text-primary'>
                                 {`${likeText}`} 
                             </span>
                     </button>
@@ -302,10 +302,10 @@ class SinglePost extends Component {
                             border: 'none',
                             width: '80%'
                         }} 
-                        className="card-link btn bg-transparent">
+                        className="card-link btn bg-transparent primary-full-color">
                             {commentIcon()}
                             <i className="fa fa-comment"></i> 
-                            <span className='ml-2'>
+                            <span className='ml-2 text-primary'>
                                 {`Commented`} 
                             </span>
                     </button>
@@ -318,10 +318,10 @@ class SinglePost extends Component {
                             border: 'none',
                             width: '80%'
                         }} 
-                        className="card-link btn bg-transparent">
+                        className="card-link btn bg-transparent primary-border-color">
                             {uncommentIcon()}
                             <i className="fa fa-comment"></i> 
-                            <span className='ml-3'>
+                            <span className='ml-3 text-primary'>
                                 {`Comment`} 
                             </span>
                     </button>

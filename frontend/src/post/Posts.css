@@ -11,13 +11,34 @@
 }
 
 .delete-dropdown:hover {
-    color: rgb(124, 119, 119);
+    /* color: rgb(0, 0, 0); */
     background-color: rgb(238, 85, 85, 0.3);
     border-color: rgb(238, 85, 85);
 }
 
 .edit-dropdown:hover {
-    color: rgb(124, 119, 119);
+    /* color: rgb(124, 119, 119); */
     background-color: rgba(18, 128, 245, 0.3);
     border-color: rgb(141, 167, 201);
+}
+
+.primary-full-color {
+    color: #007bff;
+}
+
+.primary-full-color:hover {
+    color: #007bff;
+}
+
+.primary-border-color {
+    color: #007bff;
+}
+
+.primary-border-color:hover {
+    color: #007bff;
+}
+
+.height {
+    padding: 0 20px;
+    font-size: 0.8em;
 }
