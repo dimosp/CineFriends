@@ -30,6 +30,7 @@ class FollowProfileButton extends Component {
                 )}
             </div>
         );
+        
     }
 }
 

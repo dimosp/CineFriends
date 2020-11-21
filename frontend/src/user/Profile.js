@@ -18,7 +18,6 @@ class Profile extends Component {
             error: ''
         };
     }
-
     // check follow
     checkFollow = user => {
         const jwt = isAuthenticated();
