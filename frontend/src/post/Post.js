@@ -250,7 +250,7 @@ class SinglePost extends Component {
                     href="#" 
                     className="card-link p-2 text-dark">
                         <i className="fa fa-comment"></i> 
-                    {comments} <em>{`Comments`} </em>
+                    {comments} {`Comments`}
                 </a>
                 {/* <a 
                     href="#" 

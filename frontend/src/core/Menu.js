@@ -191,7 +191,7 @@ function Menu({ history }) {
                                     <i class="fa fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="gedf-drop1">
-                                    <div class="h6 dropdown-header">Me</div>
+                                    <div class="h6 dropdown-header">My account</div>
                                         <li className='nav-item item-dropdown '>
                                             <Link 
                                                 className='nav-link text-dark'
