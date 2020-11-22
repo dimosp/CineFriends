@@ -80,10 +80,6 @@ class EditProfile extends Component {
             ? event.target.files[0].size
             : 0;
 
-        console.log(event.target.value);
-        console.log({ [name]: event.target.value });
-        console.log({ [name]: value });
-
         this.userData.set(name, value)
         this.setState({ [name]: value, fileSize });
     };
@@ -95,9 +91,6 @@ class EditProfile extends Component {
         if (this.isValid()) {
             const userId = this.props.match.params.userId;
             const token = isAuthenticated().token;
-
-            console.log('PROFILLED:', this.state.name, this.state.email, this.state.password)
-            console.log('USERDATA', this.userData)
 
             update(userId, token, this.userData)
             .then(data => {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {isAuthenticated} from '../auth';
 import {create} from './apiPost';
 import {Redirect} from 'react-router-dom';
-// import DefaultProfile from '../images/avatar.jpg';
+// import Home from '../core/Home';
     
     
 class NewPost extends Component {
@@ -15,7 +15,7 @@ class NewPost extends Component {
             user: {}, 
             fileSize: 0,
             loading: false,
-            redirectToProfile: false
+            redirectToHome: false
         };
     }
 
@@ -26,15 +26,15 @@ class NewPost extends Component {
 
     isValid = () => {
         const {body, fileSize} = this.state;
-        if (fileSize>100000) {
-            this.setState({
-                error: 'File size should be less than 100kb',
-                loading: false
-            });
-            return false;
-        }
+        // if (fileSize>100000) {
+        //     this.setState({
+        //         error: 'File size should be less than 100kb',
+        //         loading: false
+        //     });
+        //     return false;
+        // }
         if (body.length === 0) {
-            this.setState({error: 'All fields are required', loading: false});
+            this.setState({error: 'Write something to post', loading: false});
             return false;
         }
         return true;
@@ -62,6 +62,7 @@ class NewPost extends Component {
     clickSubmit = event => {
         event.preventDefault();
         this.setState({ loading: true });
+        
 
         if (this.isValid()) {
             const userId = isAuthenticated().user._id;
@@ -77,7 +78,7 @@ class NewPost extends Component {
                         loading: false,
                         body: '',
                         photo: '',
-                        redirectToProfile: false
+                        redirectToHome: false
                     })};
             });
         }
@@ -125,12 +126,14 @@ class NewPost extends Component {
             user, 
             error,
             loading,
-            redirectToProfile
+            redirectToHome
         } = this.state;
 
-        if (redirectToProfile) {
+        if (redirectToHome) {
+            // window.location.reload();
+            
             return <Redirect to="/home" />;
-        }
+        }      //////////    RELOAD  ??????????????
 
         return (
             <div className='container'>

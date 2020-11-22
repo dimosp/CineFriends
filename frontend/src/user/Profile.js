@@ -21,7 +21,7 @@ class Profile extends Component {
             if(data.error) {
                 this.setState({redirectToSignin: true});
             } else {
-                this.setState({ user: data});
+                this.setState({ user: data });
             }
         })
     }
@@ -74,7 +74,7 @@ class Profile extends Component {
                                             Edit Profile
                                         </Link>
                                     </div>
-                                    <DeleteUser userId={user._id} />
+                                        <DeleteUser userId={user._id} />
                                 </div>
                             )    
                         }

@@ -20,3 +20,29 @@
         right: 0;
         top: 40px;
 }
+
+.item-dropdown:hover {
+    color: black;
+    background-color: rgba(18, 128, 245, 0.3);
+    border-color: rgb(141, 167, 201);
+}
+
+.dropdown-arrow {
+    color: white;
+}
+
+.icon-backround, .dropdown-arrow {
+    background-color: rgba(27, 33, 39, 0.3);
+    width: auto;
+    border-radius: 10px;
+}
+
+.icon-backround-home {
+    padding: 0 15px;
+}
+
+@media screen and (max-width: 700px) {
+    .icon-backround-home {
+        padding: 8px 12px;
+    }
+}

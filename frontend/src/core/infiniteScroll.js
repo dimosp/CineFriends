@@ -238,21 +238,13 @@ const InfiniteScroll = () => {
  
             {postList.map((post, i) => {
                 const userId = post.postedBy ? `${post.postedBy._id}` : ""
-
                 const posterId = post.postedBy ? `${post._id}` : "";
-                console.log("posterId", posterId)
-
                 const postedById = post.postedBy ? `${post.postedBy._id}` : ""; 
-                console.log("postedById", postedById)
-
-
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown";
-                console.log("posterName", posterName)
-
                 const profilePic = `${process.env.REACT_APP_API_URL}/users/photo/${userId}`
 
                 return (
-                    <Post posterId={posterId} posterName={posterName} postedById={postedById} created={post.created} body={post.body} photoUrl={profilePic}/>
+                    <Post posterId={posterId} posterName={posterName} postedById={postedById} created={post.created} body={post.body} photoUrl={profilePic} />
                 )
             })}
             
