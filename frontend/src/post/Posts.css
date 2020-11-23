@@ -42,3 +42,8 @@
     padding: 0 20px;
     font-size: 0.8em;
 }
+
+.my-create-comment-button {
+    background-color: #6d6c6c;
+    color: #ffffff
+}

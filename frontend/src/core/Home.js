@@ -7,7 +7,7 @@ import './Custom.css';
 
 const Home = () => (
     <div className='Scrolling-Backround'>
-        <div style={{backgroundColor: 'rgba(110, 111, 114, 100)'}} className=' card text-center col-xs-1 p-5' align="center">
+        <div className=' card text-center col-xs-1 p-5' align="center">
             <NewPost/>
         </div>  
 
