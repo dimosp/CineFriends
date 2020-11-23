@@ -123,8 +123,8 @@ class Comment extends Component {
                     
                     <div className="container" style={containerStyle}>
                         <div className="post-list col-xs-1" align="center">
-
-                            {comments.map((comment, i) => (
+                            {/* create a copy of the comment array and reverse it, to show comments from oldest to newer */}
+                            {comments.slice(0).reverse().map((comment, i) => (
                                 <div key={i}>
 
 
