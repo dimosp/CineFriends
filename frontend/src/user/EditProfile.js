@@ -18,7 +18,8 @@ class EditProfile extends Component {
             error: '', 
             fileSize: 0,
             loading: false,
-            about: ''
+            about: '',
+            photo: '' 
         }
     }
 
@@ -34,7 +35,8 @@ class EditProfile extends Component {
                     name: data.name, 
                     email: data.email,
                     error: '', 
-                    about: data.about
+                    about: data.about,
+                    photo: data.photo
                 });
             }
         })
@@ -97,8 +99,10 @@ class EditProfile extends Component {
                 if (data.error) this.setState({ error: data.error });
                 else 
                     updateUser(data, () => {
+                        console.log('data', data.photo)
                         this.setState({
-                            redirectToProfile: true
+                            photo: data.photo,
+                            redirectToProfile: true                            
                         })
                     });
             });

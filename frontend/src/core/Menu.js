@@ -1,10 +1,10 @@
 import React from 'react';
+import ReactTooltip from "react-tooltip";
 import {Link, withRouter} from 'react-router-dom';
 import {signout, isAuthenticated} from '../auth/index';
 import $ from 'jquery';
 import './Custom.css';
-import { HomeIcon, PeopleIcon } from '../images/iconIndex.js';
-
+import { HomeIcon, PeopleIcon, SearchIcon } from '../images/iconIndex.js';
 
 const isActive = (history, path) => {
     if(history.location.pathname === path) return {color: '#778899'}
@@ -90,13 +90,17 @@ function Menu({ history }) {
                         <div className='container icon-backround icon-backround-home'> 
                             <li className="nav-item active my-auto mx-auto">
                                 <Link 
-                                    
                                     style={isActive(history, '/'), { cursor: "pointer", color: '#fff'}} 
-                                    to='/home'>
-                                        {HomeIcon()}
-                                        
+                                    to='/home'
+                                    data-tip data-for="registerTip-Home"
+                                >
+                                    {HomeIcon()}   
                                 </Link>
+                                <ReactTooltip id="registerTip-Home" effect="solid">
+                                    Home
+                                </ReactTooltip>
                             </li>
+                            
                             {/* <li className='nav-item mx-auto'>
                                 <Link
                                     className='nav-link' 
@@ -113,9 +117,14 @@ function Menu({ history }) {
                             <li className='nav-item my-auto mx-auto '> 
                                 <Link 
                                     className="nav-link mr-2"
-                                    to={`/users`}>
+                                    to={`/users`}
+                                    data-tip data-for="registerTip-Discover"
+                                >
                                     {PeopleIcon()}
                                 </Link>
+                                <ReactTooltip id="registerTip-Discover" place="top" effect="solid">
+                                    Discover
+                                </ReactTooltip>
                             </li>
                             <li className='nav-item mx-auto'>
                                 <Link
@@ -127,8 +136,10 @@ function Menu({ history }) {
                                 </Link>
                             </li>
                         </div>
+                        
                     </ul>
                 </div>
+                
 
                 <div class="mx-auto order-0">
                     <form className="form-inline my-2 my-lg-0 navbar-form">
@@ -152,7 +163,6 @@ function Menu({ history }) {
                                         style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }}
                                         to={'/user/' + user._id}>
                                         {user.name}
-
                                     </Link>
                                 </li>
                             ))}
@@ -171,8 +181,12 @@ function Menu({ history }) {
                                         src={`${process.env.REACT_APP_API_URL}/users/photo/${isAuthenticated().user._id}`} 
                                         alt="" 
                                         style={{'box-shadow': '3px 3px 3px 3px #212122'}}
+                                        data-tip data-for="registerTip-Profile"
                                     />
                                 </Link>
+                                <ReactTooltip id="registerTip-Profile" place="bottom" effect="solid">
+                                    My Profile
+                                </ReactTooltip>
                             </li>
                             <li className='nav-item mx-auto'>
                                 <Link

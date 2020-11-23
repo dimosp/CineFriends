@@ -39,7 +39,7 @@ export const remove = (userId, token) => {
 }
 
 export const update = (userId, token, userdata) => {
-
+    console.log('userdata', userdata)
     return fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
         method: 'PUT',
         headers: {
@@ -60,8 +60,11 @@ export const updateUser = (user, next) => {
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('jwt')) {
             let auth = JSON.parse(localStorage.getItem('jwt'))
+            console.log('user', user)
+            console.log('auth.user', auth.user)
 
             auth.user = user;
+            auth.user.photo = user.photo
 
             localStorage.setItem('jwt', JSON.stringify(auth))
             next();

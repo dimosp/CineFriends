@@ -17,21 +17,21 @@ class SinglePost extends Component {
         deleted: false,
         like: false, 
         likes: 0,
-        likeText: 'Like',
         comment: false,
         comments: 0,
         redirectToLandingPage: false,
         // BodyFullyShown: false
     }
 
-    checkLike = (likes) => {
-        const userId = isAuthenticated().user._id;
-        let match = likes.indexOf(userId) !== -1
-        return match;
-    }
+    // checkLike = (likes) => {
+    //     const userId = isAuthenticated().user._id;
+    //     let match = likes.indexOf(userId) !== -1
+    //     return match;
+    // }
 
     componentDidMount = () => {
         const posterId = this.props.posterId;
+        
 
         singlePost(posterId)
         .then (data => {
@@ -41,7 +41,8 @@ class SinglePost extends Component {
                 this.setState({ 
                     post: data,
                     likes: data.likes.length,
-                    like: this.checkLike(data.likes),
+                    // like: this.checkLike(data.likes),
+                    like: data.likes.includes(isAuthenticated().user._id),
                     comment: this.state.comment,
                     comments: data.comments.length,
                     // share: this.state.share
@@ -63,9 +64,6 @@ class SinglePost extends Component {
         const userId = isAuthenticated().user._id;
         const token = isAuthenticated().token;
         const postId = this.props.posterId;
-        // changing to Like and Unlike might confuse people, it is better to distinguish it via color fill of
-        // the icon
-        const likeText = this.state.like ? 'Like' : 'Liked' 
 
         callAPI(userId, token, postId)
         .then(data => {
@@ -74,8 +72,7 @@ class SinglePost extends Component {
             } else {
                 this.setState({
                     like: !this.state.like,
-                    likes: data.likes.length,
-                    likeText: likeText
+                    likes: data.likes.length
                 })
             }
         })
@@ -178,7 +175,7 @@ class SinglePost extends Component {
             posterName,
             like,
             likes, 
-            likeText,
+            likeByAuthnticatedUser,
             comment, 
             comments,
             redirectToLandingPage,
@@ -273,7 +270,7 @@ class SinglePost extends Component {
                             {likeIcon()}
                             <i className="fa fa-gittip"></i>
                             <span className='ml-2'>
-                                {`${likeText}`} 
+                                {`${'Liked'}`} 
                             </span>
                     </button>
 
@@ -289,7 +286,7 @@ class SinglePost extends Component {
                             {unlikeIcon()}
                             <i className="fa fa-gittip"></i>
                             <span className='ml-3 text-primary'>
-                                {`${likeText}`} 
+                                {`${'Like'}`} 
                             </span>
                     </button>
                 )}

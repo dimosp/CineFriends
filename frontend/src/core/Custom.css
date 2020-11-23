@@ -46,3 +46,8 @@
         padding: 8px 12px;
     }
 }
+
+.Scrolling-Backround {
+    background: rgb(110, 111, 114);
+    background: linear-gradient(180deg, rgba(110, 111, 114) 0%, rgba(255,246,229,1) 100%, rgba(132,147,160,1) 100%);
+}
