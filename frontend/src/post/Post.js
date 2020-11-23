@@ -311,20 +311,21 @@ class SinglePost extends Component {
                     </button>
 
                 ) : (
-                    <button 
-                        onClick={this.commentToggle} 
-                        style={{
-                            cursor: "pointer",
-                            border: 'none',
-                            width: '80%'
-                        }} 
-                        className="card-link btn bg-transparent primary-border-color">
-                            {uncommentIcon()}
-                            <i className="fa fa-comment"></i> 
-                            <span className='ml-3 text-primary'>
-                                {`Comment`} 
-                            </span>
-                    </button>
+                    <Link to={`/post/${this.props.posterId}`} style={{
+                        cursor: "pointer",
+                        border: 'none',
+                        width: '80%'
+                    }} >
+                        <button 
+                            onClick={this.commentToggle} 
+                            className="card-link btn bg-transparent primary-border-color">
+                                {uncommentIcon()}
+                                <i className="fa fa-comment"></i> 
+                                <span className='ml-3 text-primary'>
+                                    {`Comment`} 
+                                </span>
+                        </button>
+                    </Link>
                 )}
             </div>
         </div>
