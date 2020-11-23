@@ -246,12 +246,13 @@ class SinglePost extends Component {
                         <i className="fa fa-gittip"></i> 
                     {likes} {likeIcon()}
                 </a>
+                <Link to={`/post/${this.props.posterId}`} >
                 <a 
                     href="#" 
                     className="card-link p-2 text-dark">
                         <i className="fa fa-comment"></i> 
                     {comments} {`Comments`}
-                </a>
+                </a></Link>
                 {/* <a 
                     href="#" 
                     className="card-link p-2">

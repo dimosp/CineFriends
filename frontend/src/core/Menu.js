@@ -41,7 +41,7 @@ function Menu({ history }) {
     }, [searchTerm]);
 
     
-    if (!isAuthenticated() && history.location.pathname === "/"){
+    if (history.location.pathname === "/"){
         return (            
                 <p class="mt-5 mb-3 text-muted fixed-bottom" align="center"><a href="https://github.com/dimosp/CineFriends">SKG.CODE Binge</a> &copy; 2020-2021</p>        
         );
