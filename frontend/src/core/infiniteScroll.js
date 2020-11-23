@@ -138,7 +138,7 @@ const InfiniteScroll = () => {
                 promises.push(fetchFollowerPosts(token, following._id))
 
             })
-
+            promises.push(fetchFollowerPosts(token, user._id))
             //Resolve all promises
             Promise.all(promises)
                 .then(responses => {
