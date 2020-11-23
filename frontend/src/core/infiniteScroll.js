@@ -128,18 +128,14 @@ const InfiniteScroll = () => {
             return response.json()
         }).then(user => {
 
-            //Get the ids of the user's followers
-            var followerIds = user.followers;
-            followerIds = followerIds.push(userId);
 
-
+            console.log(user)
             //Array to holde the Promises for each follower's posts api call
             var promises = [];
 
-            //For each follower call fetchFOllowerPosts, which makes the api call to get all posts by the follower
-            followerIds.map(followerId => {
-
-                promises.push(fetchFollowerPosts(token, followerId))
+            //For each follower call fetchFollowerPosts, which makes the api call to get all posts by the follower
+            user.following.map(following => {
+                promises.push(fetchFollowerPosts(token, following._id))
 
             })
 
@@ -179,7 +175,7 @@ const InfiniteScroll = () => {
 
     //Called once in the render, to get all posts
     useEffect(() => {
-        getPostsUsers(); //CHANGE TO getPostsFollowers() to show follower's posts
+        getPostsFollowers(); //CHANGE TO getPostsFollowers() to show follower's posts
     }, [])
 
     //Called when all posts are fetched
