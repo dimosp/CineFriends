@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
 import { read, update, updateUser } from './apiUser';
 import DefaultProfile from '../images/avatar.png';
-// import DeleteUser from './DeleteUser';
+import '../core/Custom.css';
 
 class EditProfile extends Component {
 
@@ -18,7 +18,8 @@ class EditProfile extends Component {
             error: '', 
             fileSize: 0,
             loading: false,
-            about: ''
+            about: '',
+            // photo: '' 
         }
     }
 
@@ -34,7 +35,8 @@ class EditProfile extends Component {
                     name: data.name, 
                     email: data.email,
                     error: '', 
-                    about: data.about
+                    about: data.about,
+                    // photo: data.photo
                 });
             }
         })
@@ -98,6 +100,7 @@ class EditProfile extends Component {
                 else 
                     updateUser(data, () => {
                         this.setState({
+                            photo: data.photo,
                             redirectToProfile: true
                         })
                     });
@@ -110,8 +113,12 @@ class EditProfile extends Component {
         <form>
             <div className="form-group">
                 <div class="col-sm-3 my-1">
-                    <label className="text-muted">Profile Photo</label>
+                    <label className="text-muted" className='color-dark'>Profile Photo</label>
                     <input 
+                        style={{
+                            border: '1px solid rgba(0,0,0,.3)',
+                            width: '400px'
+                        }}
                         onChange={this.handleChange("photo")} 
                         type="file"
                         accept='image/*'
@@ -122,8 +129,12 @@ class EditProfile extends Component {
 
             <div className="form-group">
                 <div class="col-sm-3 my-1">
-                    <label className="text-muted">Name</label>
+                    <label className="text-muted" className='color-dark'>Name</label>
                     <input 
+                        style={{
+                            border: '1px solid rgba(0,0,0,.3)',
+                            width: '400px'
+                        }}
                         onChange={this.handleChange("name")} 
                         type="text" 
                         className="form-control"
@@ -134,8 +145,12 @@ class EditProfile extends Component {
 
             <div className="form-group">
                 <div class="col-sm-3 my-1">
-                    <label className="text-muted">Email</label>
+                    <label className="text-muted" className='color-dark'>Email</label>
                     <input 
+                        style={{
+                            border: '1px solid rgba(0,0,0,.3)',
+                            width: '400px'
+                        }}
                         onChange={this.handleChange("email")} 
                         type="email" 
                         className="form-control"
@@ -146,8 +161,12 @@ class EditProfile extends Component {
 
             <div className="form-group">
                 <div class="col-sm-3 my-1">
-                    <label className="text-muted">About</label>
+                    <label className="text-muted" className='color-dark'>About</label>
                     <textarea 
+                        style={{
+                            border: '1px solid rgba(0,0,0,.3)',
+                            width: '400px'
+                        }}
                         onChange={this.handleChange("about")} 
                         type="text" 
                         className="form-control"
@@ -158,8 +177,12 @@ class EditProfile extends Component {
 
             <div className="form-group">
                 <div class="col-sm-3 my-1">
-                    <label className="text-muted">New Password</label>
+                    <label className="text-muted" className='color-dark'>New Password</label>
                     <input 
+                        style={{
+                            border: '1px solid rgba(0,0,0,.3)',
+                            width: '400px'
+                        }}
                         onChange={this.handleChange("password")} 
                         type="password" 
                         className="form-control"
@@ -171,7 +194,7 @@ class EditProfile extends Component {
                 </div>
             </div>
 
-            <button onClick={this.clickSubmit} className="btn btn-raised btn-dark">
+            <button onClick={this.clickSubmit} className="btn btn-raised btn-dark mx-3">
                 Update
             </button>
         </form>
@@ -199,10 +222,13 @@ class EditProfile extends Component {
 
         return (
             <div className='container'>
-                <h2 className='mt-5 mb-5'>Edit Profile</h2>
+                <h2 className='mt-5 mb-5 mx-3'>Edit Profile</h2>
                 <div 
                     className="alert alert-danger"
-                    style={{ display: error ? "" : "none" }} 
+                    style={{ 
+                        display: error ? "" : "none",
+                        height: '100vh'
+                    }} 
                 >
                     {error}
                 </div>
@@ -216,8 +242,12 @@ class EditProfile extends Component {
                 )}
 
                 <img 
-                    style={{height: '200px', width: 'auto'}} 
-                    className='img-thumbnail'
+                    style={{
+                        height: '200px', 
+                        width: 'auto',
+                        border: '1px solid rgba(0,0,0,.3)'
+                    }} 
+                    className='img-thumbnail mx-3'
                     src={photoUrl}
                     onError={i => (i.target.src = `${DefaultProfile}`)}
                     alt={name} 

@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {isAuthenticated} from '../auth';
 import {create} from './apiPost';
 import {Redirect} from 'react-router-dom';
-// import Home from '../core/Home';
-    
+import './Posts.css';        
     
 class NewPost extends Component {
     constructor() {
@@ -85,7 +84,7 @@ class NewPost extends Component {
     };
 
     newPostForm = (body) => (
-        <form className="">
+        <form className="mx-auto my-auto post-size">
                 
             {/* <div className='form-group'>
                 <input
@@ -96,9 +95,11 @@ class NewPost extends Component {
                 />
             </div> */}
             
-            <div className='form-group mx-auto col-lg-5'>
+            <div className='post-size form-group mx-auto col-lg-5'>
                 <div class="text-center">
                     <textarea
+                        style={{width: '90%', margin:'auto'}}
+                        className="mx-auto"
                         onChange={this.handleChange('body')}
                         type='text'
                         placeholder="What's on your mind?"
@@ -111,8 +112,9 @@ class NewPost extends Component {
             <div className="text-center">
                 <button
                     onClick={this.clickSubmit}
-                    className='btn my-create-post-button'
+                    className='btn btn-raised btn-dark'
                 >
+                    {/*my-create-post-button -->  btn btn-raised btn-dark */}
                     Create Post
                 </button>
             </div>
@@ -136,7 +138,7 @@ class NewPost extends Component {
         }      //////////    RELOAD  ??????????????
 
         return (
-            <div className='container'>
+            <div className=''>
                 <div
                     className='alert alert-danger'
                     style={{display: error ? "" : "none"}}

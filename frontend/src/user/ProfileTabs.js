@@ -30,7 +30,7 @@ class ProfileTabs extends Component {
                         <hr />
                         {followers.map((person, i) => (
                             <div key={i}>
-                                <div>
+                                <div className="text-dark">
                                     <Link to={`/user/${person._id}`}>
                                         <img
                                             style={{
@@ -65,7 +65,7 @@ class ProfileTabs extends Component {
                         <hr />
                         {following.map((person, i) => (
                             <div key={i}>
-                                <div>
+                                <div className="text-dark">
                                     <Link to={`/user/${person._id}`}>
                                         <img
                                             style={{
@@ -81,7 +81,7 @@ class ProfileTabs extends Component {
                                             src={`${process.env.REACT_APP_API_URL}/users/photo/${person._id}`}
                                             alt={person.name}
                                         />
-                                        <div>
+                                        <div >
                                             <p >
                                                 {person.name}
                                             </p>
@@ -101,7 +101,7 @@ class ProfileTabs extends Component {
                 {isAuthenticated().user &&  
                     isAuthenticated().user._id === user._id && */}
                     
-                    <div className="card text-center col-xs-1 p-5">
+                    <div className="card text-center col-xs-1 p-5 bg-transparent border-0" >
                             
                             <div className="container" style={containerStyle}>
                                 <div className="post-list col-xs-1" align="center">

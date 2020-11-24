@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import { signup } from '../auth/index';
+import './style.css';
 
 
 class Signup extends Component {
@@ -44,8 +45,8 @@ class Signup extends Component {
     };
     
     signupForm = (name, email, password) => (
-        <form>
-            <body class="text-center">
+        <form className="BG-White">
+            <body class="text-center BG-White">
                 <div className="form-group">
                     <div class="col-sm-3 my-1 mx-auto">
                         <label className="text-muted">Name</label>
@@ -78,7 +79,13 @@ class Signup extends Component {
                     </div>
                 </div>
 
-                <button onClick={this.clickSubmit} className="btn btn-raised btn-dark">
+                <button 
+                    onClick={this.clickSubmit} 
+                    className="btn btn-raised btn-dark"
+                    style={{
+                        marginBottom: '200px'
+                    }}
+                >
                     Sign Up
                 </button>
 
@@ -90,12 +97,12 @@ class Signup extends Component {
     render() {
         const {name, email, password, error, open} = this.state;
         return (
-            <body class="text-center">
-                <div className='container'>
+            <body class="text-center BG-White">
+                <div className='container BG-White'>
                     <h2 className="mt-5 mb-5">Sign Up</h2>
                     
                     <div
-                        className="alert alert-danger"
+                        className="alert alert-danger BG-White"
                         style={{ display: error ? "" : "none" }}
                     >
                         {error}

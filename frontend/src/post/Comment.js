@@ -91,8 +91,9 @@ class Comment extends Component {
         const { error } = this.state;
 
         return (
-            <div>
-                <h4 className="mt-5 mb-5">Comment Section</h4>
+            // mx-5, mx-3, style={{border: '1px solid rgba(0,0,0,.3)'}} btn-raised btn-dark DEL my-create-comment-button
+            <div className='mx-5' > 
+                <h4 className="mt-5 mb-5 mx-3">Comment Section</h4>
 
                 <form onSubmit={this.addComment}>
                     <div className="form-group col-lg-5">
@@ -102,9 +103,10 @@ class Comment extends Component {
                             placeholder="Leave a comment..."
                             className='form-control'
                             value={this.state.text}
+                            style={{border: '1px solid rgba(0,0,0,.3)'}}
                         />
                         <br></br>
-                        <button className="btn my-create-comment-button">
+                        <button className="btn btn-raised btn-dark ">
                             Post
                         </button>
                     </div>

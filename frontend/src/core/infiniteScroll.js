@@ -229,7 +229,8 @@ const InfiniteScroll = () => {
     }
 
 
-    return (<div className="container" style={containerStyle}>
+    return (
+    <div className="" style={containerStyle}>
         <div className="post-list col-xs-1" align="center">
  
             {postList.map((post, i) => {
@@ -245,7 +246,9 @@ const InfiniteScroll = () => {
             })}
             
             <div className="loading" ref={loader}>
-                <h2>No more posts! Why not try to create some yourself?</h2>
+                <h2>No more posts! 
+                    <br></br>
+                Why not try to create some yourself?</h2>
             </div>
         </div>
     </div>)

@@ -17,18 +17,17 @@ class SinglePost extends Component {
         deleted: false,
         like: false, 
         likes: 0,
-        likeText: 'Like',
         comment: false,
         comments: 0,
         redirectToLandingPage: false,
         // BodyFullyShown: false
     }
 
-    checkLike = (likes) => {
-        const userId = isAuthenticated().user._id;
-        let match = likes.indexOf(userId) !== -1
-        return match;
-    }
+    // checkLike = (likes) => {
+    //     const userId = isAuthenticated().user._id;
+    //     let match = likes.indexOf(userId) !== -1
+    //     return match;
+    // }
 
     componentDidMount = () => {
         const posterId = this.props.posterId;
@@ -41,7 +40,8 @@ class SinglePost extends Component {
                 this.setState({ 
                     post: data,
                     likes: data.likes.length,
-                    like: this.checkLike(data.likes),
+                    // like: this.checkLike(data.likes),
+                    like: data.likes.includes(isAuthenticated().user._id),
                     comment: this.state.comment,
                     comments: data.comments.length,
                     // share: this.state.share
@@ -65,7 +65,7 @@ class SinglePost extends Component {
         const postId = this.props.posterId;
         // changing to Like and Unlike might confuse people, it is better to distinguish it via color fill of
         // the icon
-        const likeText = this.state.like ? 'Like' : 'Liked' 
+        // const likeText = this.state.like ? 'Like' : 'Liked' 
 
         callAPI(userId, token, postId)
         .then(data => {
@@ -74,8 +74,8 @@ class SinglePost extends Component {
             } else {
                 this.setState({
                     like: !this.state.like,
-                    likes: data.likes.length,
-                    likeText: likeText
+                    likes: data.likes.length
+                    // likeText: likeText
                 })
             }
         })
@@ -178,7 +178,7 @@ class SinglePost extends Component {
             posterName,
             like,
             likes, 
-            likeText,
+            likeByAuthnticatedUser,
             comment, 
             comments,
             redirectToLandingPage,
@@ -192,7 +192,7 @@ class SinglePost extends Component {
         }
 
         return(
-            <div class="card gedf-card border-secondary m-5 ">
+            <div class="card gedf-card border-secondary mb-5">
                 <div class="card-header" style={cardStyle}>
                     <div class="d-flex justify-content-between align-items-center ">
                     <div class="d-flex justify-content-between align-items-center">
@@ -247,12 +247,13 @@ class SinglePost extends Component {
                     {likes} {likeIcon()}
                 </a>
                 <Link to={`/post/${this.props.posterId}`} >
-                <a 
-                    href="#" 
-                    className="card-link p-2 text-dark">
-                        <i className="fa fa-comment"></i> 
-                    {comments} {`Comments`}
-                </a></Link>
+                    <a 
+                        href="#" 
+                        className="card-link p-2 text-dark">
+                            <i className="fa fa-comment"></i> 
+                        {comments} {`Comments`}
+                    </a>
+                </Link>
                 {/* <a 
                     href="#" 
                     className="card-link p-2">
@@ -274,7 +275,7 @@ class SinglePost extends Component {
                             {likeIcon()}
                             <i className="fa fa-gittip"></i>
                             <span className='ml-2'>
-                                {`${likeText}`} 
+                                {`${'Liked'}`} 
                             </span>
                     </button>
 
@@ -290,7 +291,7 @@ class SinglePost extends Component {
                             {unlikeIcon()}
                             <i className="fa fa-gittip"></i>
                             <span className='ml-3 text-primary'>
-                                {`${likeText}`} 
+                                {`${'Like'}`}  
                             </span>
                     </button>
                 )}

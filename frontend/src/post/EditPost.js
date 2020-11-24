@@ -97,11 +97,14 @@ class EditPost extends Component {
     };
 
     editPostForm = (body) => (
-        <form className="">
+        <form className="bg-transparent">
                 
             <div className='form-group'>
                 <div class="text-center">
                     <textarea
+                        style={{
+                            border: '1px solid rgba(0,0,0,.3)'
+                        }}
                         onChange={this.handleChange('body')}
                         type='text'
                         placeholder="Write something here..."
@@ -114,7 +117,10 @@ class EditPost extends Component {
             <div className="text-center">
                 <button
                     onClick={this.clickSubmit}
-                    className='btn my-create-post-button'
+                    className='btn btn-raised btn-dark'
+                    style={{
+                        marginBottom: '500px'
+                    }}
                 >
                     Update
                 </button>
@@ -130,11 +136,13 @@ class EditPost extends Component {
         }
 
         return(
-            <div className='container'>
-                <h2 className='mt-5 mb-5'>Edit Your Post</h2>  
+            <div className='container bg-transparent'>
+                <h2 className='mt-5 mb-5 bg-transparent'>Edit Your Post</h2>  
                 <div 
-                    className="alert alert-danger"
-                    style={{ display: error ? "" : "none" }} 
+                    className="alert alert-danger bg-transparent"
+                    style={{ 
+                        display: error ? "" : "none",
+                    }} 
                 >
                     {error}
                 </div>

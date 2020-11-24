@@ -41,8 +41,18 @@
     padding: 0 15px;
 }
 
+@media screen and (max-width: 900px) {
+    .box-container {
+        display: block!important;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .icon-backround-home {
         padding: 8px 12px;
     }
+}
+
+.Max-Height {
+    height: 150px;
 }

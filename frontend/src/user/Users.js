@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { list } from './apiUser';
 import DefaultProfile from '../images/avatar.png';
 import { Link } from 'react-router-dom';
+import '../core/Custom.css';
 
 class Users extends Component {
     constructor() {
@@ -23,9 +24,9 @@ class Users extends Component {
     }
 
     renderUsers = users => (
-        <div className='row'>
+        <div className='row bg-transparent'>
             {users.map((user, i) => (
-                <div className='card col-md-4' key={i}>
+                <div className='card col-md-4 bg-transparent border border-0 my-4' key={i}>
                     <img 
                         style={{height: '150px', width: '150px'}} 
                         className='img-thumbnail'

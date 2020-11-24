@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactTooltip from "react-tooltip";
 import {Link, withRouter} from 'react-router-dom';
 import {signout, isAuthenticated} from '../auth/index';
+import DefaultProfile from '../images/avatar.png';
 import $ from 'jquery';
 import './Custom.css';
 import { HomeIcon, PeopleIcon } from '../images/iconIndex.js';
@@ -10,6 +12,10 @@ const isActive = (history, path) => {
     if(history.location.pathname === path) return {color: '#778899'}
     else return {color: '#ffffff'}
 }
+
+
+
+const photoUrl = DefaultProfile;
 
 function Menu({ history }) {
 
@@ -49,7 +55,7 @@ function Menu({ history }) {
     else if (!isAuthenticated()) {
         return (
             <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top">              
-                <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
+                <div class="BG-Whitenavbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active my-auto">
                             <Link 
@@ -90,12 +96,18 @@ function Menu({ history }) {
                         <div className='container icon-backround icon-backround-home'> 
                             <li className="nav-item active my-auto mx-auto">
                                 <Link 
-                                    
                                     style={isActive(history, '/'), { cursor: "pointer", color: '#fff'}} 
-                                    to='/home'>
-                                        {HomeIcon()}
-                                        
+                                    to='/home'
+                                    data-tip data-for="registerTip-Home"
+                                >
+                                    {HomeIcon()}   
                                 </Link>
+                                <ReactTooltip 
+                                    id="registerTip-Home" 
+                                    effect="solid"
+                                >
+                                    Home
+                                </ReactTooltip>
                             </li>
                             {/* <li className='nav-item mx-auto'>
                                 <Link
@@ -113,9 +125,18 @@ function Menu({ history }) {
                             <li className='nav-item my-auto mx-auto '> 
                                 <Link 
                                     className="nav-link mr-2"
-                                    to={`/users`}>
+                                    to={`/users`}
+                                    data-tip data-for="registerTip-Discover"
+                                >
                                     {PeopleIcon()}
                                 </Link>
+                                <ReactTooltip 
+                                    id="registerTip-Discover" 
+                                    place="top" 
+                                    effect="solid"
+                                >
+                                    Discover
+                                </ReactTooltip>
                             </li>
                             <li className='nav-item mx-auto'>
                                 <Link
@@ -152,7 +173,6 @@ function Menu({ history }) {
                                         style={isActive(history, '/'), { cursor: "pointer", color: '#000000' }}
                                         to={'/user/' + user._id}>
                                         {user.name}
-
                                     </Link>
                                 </li>
                             ))}
@@ -168,11 +188,20 @@ function Menu({ history }) {
                                     <img 
                                         className="rounded-circle mr-2" 
                                         width="30" 
-                                        src={`${process.env.REACT_APP_API_URL}/users/photo/${isAuthenticated().user._id}`} 
+                                        src={`${process.env.REACT_APP_API_URL}/users/photo/${isAuthenticated().user._id}`}
+                                        onError={i => (i.target.src = `${DefaultProfile}`)}
                                         alt="" 
                                         style={{'box-shadow': '3px 3px 3px 3px #212122'}}
+                                        data-tip data-for="registerTip-Profile"
                                     />
                                 </Link>
+                                <ReactTooltip 
+                                    id="registerTip-Profile" 
+                                    place="bottom" 
+                                    effect="solid"
+                                >
+                                    My Profile
+                                </ReactTooltip>
                             </li>
                             <li className='nav-item mx-auto'>
                                 <Link
@@ -214,10 +243,8 @@ function Menu({ history }) {
                     </ul>
                 </div>
             </nav>
-            
         );
     }
-
 }
 
 export default withRouter(Menu);

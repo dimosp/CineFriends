@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { signin, authenticate } from '../auth/index';
+import './style.css';
 
 class Signin extends Component {
     constructor() {
@@ -39,14 +40,13 @@ class Signin extends Component {
                 authenticate(data, () => {
                     this.setState({redirect: true})
                 })
-        
             }
         });
     };
 
     signinForm = (email, password) => (
-        <form>
-            <body class="text-center">
+        <form className="BG-White">  
+            <body class="text-center BG-White">
                 <div className="form-group">
                     <div class="col-sm-3 my-1 mx-auto">
                         <label className="text-muted">Email</label>
@@ -76,6 +76,9 @@ class Signin extends Component {
                 <button
                     onClick={this.clickSubmit}
                     className="btn btn-raised btn-dark"
+                    style={{
+                        marginBottom: '300px'
+                    }}
                 >
                     Sign In
                 </button>
@@ -93,12 +96,12 @@ class Signin extends Component {
         }
 
         return (
-            <body class="text-center">
-                <div className="container">
+            <body class="text-center BG-White">
+                <div className="container BG-White">
                     <h2 className="mt-5 mb-5">Sign In</h2>
 
                     <div
-                        className="alert alert-danger"
+                        className="alert alert-danger BG-White"
                         style={{ display: error ? "" : "none" }} // Displays error message in case user gives wrong credentials
                     >
                         {error}
