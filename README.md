@@ -41,5 +41,8 @@ lines [42](https://github.com/dimosp/CineFriends/blob/main/run-app.sh#L42) and [
 
 *Important:* There are 2 .env files (with environment variables) that our project uses, which are not on the repository for security reasons. In order for the project to run properly, you have to create your .env files in the same directories that the .env.example files (examples of how our .env files look like) are present in this repository (in [CineFriends/backend](https://github.com/dimosp/CineFriends/tree/main/backend) and in [CineFriends/frontend](https://github.com/dimosp/CineFriends/tree/main/frontend)).
 
+## Documentation
+The project's API documentation can be found online on https://binge-cinefriends.herokuapp.com/api/ or http://localhost:8080/api/ if you are running the project locally.
+
 ## Contributing
 Until November 20, 2020, this project will be solely maintained by the **SKG.CODE Deadpool Team**.
