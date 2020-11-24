@@ -54,7 +54,7 @@ function Menu({ history }) {
     }
     else if (!isAuthenticated()) {
         return (
-            <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top">              
+            <nav className="navbar navbar-expand-md navbar-dark my-primary navbarCustom sticky-top mb-0">              
                 <div class="BG-Whitenavbar-collapse w-100 order-1 order-md-0 dual-collapse2 col-xs-1" align="center">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active my-auto">

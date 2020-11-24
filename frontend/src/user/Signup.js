@@ -46,7 +46,7 @@ class Signup extends Component {
     
     signupForm = (name, email, password) => (
         <form className="BG-White">
-            <body class="text-center BG-White">
+            <body class="text-center BG-White ">
                 <div className="form-group">
                     <div class="col-sm-3 my-1 mx-auto">
                         <label className="text-muted">Name</label>
@@ -81,9 +81,9 @@ class Signup extends Component {
 
                 <button 
                     onClick={this.clickSubmit} 
-                    className="btn btn-raised btn-dark"
+                    className="btn btn-raised btn-dark "
                     style={{
-                        marginBottom: '200px'
+                        marginBottom: '170px'
                     }}
                 >
                     Sign Up
@@ -99,7 +99,7 @@ class Signup extends Component {
         return (
             <body class="text-center BG-White">
                 <div className='container BG-White'>
-                    <h2 className="mt-5 mb-5">Sign Up</h2>
+                    <h2 className="  mb-5 pt-5">Sign Up</h2>
                     
                     <div
                         className="alert alert-danger BG-White"
