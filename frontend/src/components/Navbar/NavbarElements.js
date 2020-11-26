@@ -4,7 +4,7 @@ import {FcFilmReel} from 'react-icons/fc'
 
 
 export const Nav = styled.nav`
-    background: #000;
+    background: rgba(2, 2, 2, 0.2);
     height: 80px;
     margin-top: -80px;
     display: flex;
