@@ -25,10 +25,11 @@ class Users extends Component {
     renderUsers = users => (
         <div className='row'>
             {users.map((user, i) => (
-                <div className='card col-md-4' key={i}>
+                <div className='col-lg-3 col-md-6'>
+                <div className='card-column' key={i}>
                     <img 
                         style={{height: '150px', width: '150px'}} 
-                        className='img-thumbnail'
+                        className='img-fluid img-thumbnail rounded-circle'
                         src={`${process.env.REACT_APP_API_URL}/users/photo/${user._id}`}
                         onError={i => (i.target.src = `${DefaultProfile}`)} 
                         alt={user.name} 
@@ -43,6 +44,7 @@ class Users extends Component {
                         </Link>
                     </div>
                 </div>
+            </div>
             ))}
         </div>
     );
