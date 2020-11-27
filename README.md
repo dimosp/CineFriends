@@ -12,7 +12,7 @@ A social network for movie enthusiasts
 ## Project
 The CineFriends Project is a project developed by the **SKG.CODE Deadpool Team**, while participating in the [SKG.CODE](https://www.skgcode.gr/) program.
 
-The social network website developed under the CineFriends project is named "***Binge***".
+The social network website developed under the CineFriends project is named "***Binge***" and is deployed here: https://binge-cinefriends.herokuapp.com/
 
 ## Technologies
 This project uses the **MERN software stack**. 
